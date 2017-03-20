@@ -1,0 +1,43 @@
+.source-option {
+    background-color: lightyellow;
+    color: blue;
+    margin-left: 30px;
+}
+
+.removable-option {
+    border: 1px solid #c9e6f2;
+    background-color: lightskyblue;
+    padding: 3px;
+    margin: 2px;
+}
+
+.removable-option .x {
+    cursor: pointer;
+    padding: 2px;   
+    color: #707070;
+    font-weight: bold;
+}
+
+.removable-option .item {
+    cursor: pointer;
+    padding: 2px;   
+}
+
+.selected-item {
+    font-weight: bold;
+}
+
+.logic-and {
+    color: red;
+    background-color: lightcoral;
+}
+
+.logic-or {
+    color: green;
+    background-color: lightgreen;
+}
+
+.logic-not {
+    color: dimgray;
+    background-color: lightgray;
+}
