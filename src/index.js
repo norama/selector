@@ -13,7 +13,7 @@ const data = [
     { 
         id: 'MainSources',
         title: 'SOURCES',
-        type: 'Source',
+        type: 'source',
 
         items: [
             {
@@ -47,7 +47,7 @@ const data = [
     { 
         id: 'MainTags',
         title: 'TAGS',
-        type: 'Tag',
+        type: 'tag',
 
         items: [
             {

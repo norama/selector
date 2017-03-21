@@ -72,6 +72,7 @@ class SourcesTagsSelector extends Component {
   
         return (<MultiSelect
             ref={(input) => { this.multiSelectInstance = input; }} 
+            className = 'multiselect'
             groups = {groups}
             //groupsAsColumns = {true}
             options = {options}
@@ -107,13 +108,16 @@ class SourcesTagsSelector extends Component {
 
             renderOption = {function(item){
                 const type =  groupId2Type[item.groupId];
-                return <div className = "source-option">
-                    <MenuItem item={item} type={type} />
+                return <div className = {['menu-option', type.toLowerCase()].join(' ')} >
+                    <div className={type}>
+                        <MenuItem item={item} type={type} />
+                    </div>
                 </div>
             }}
             renderValue = {function(item){
                 const type =  groupId2Type[item.groupId];
-                return <div className = "removable-option">
+                return <div className = "selected-option">
+                    <div className={type}>
                     <span className = "item"><SelectedItem item={item} type={type}  handleLogicChange={self.handleLogicChange} /></span>
                     <span className = "x" onClick = {function(){
                         
@@ -129,6 +133,7 @@ class SourcesTagsSelector extends Component {
                         } );
                         
                     }}>x</span>
+                    </div>
                 </div>;
             }}
             placeholder = "Select sources and tags"

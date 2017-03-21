@@ -31,7 +31,7 @@ class SelectedItem extends Component {
     }
 
     render() {
-        return (<button className={['item', 'selected-item', this.className(this.props.item.logic)].join(' ')} onClick={this.handleChange} title={this.props.item.logic}>{this.props.item.label}</button>);
+        return (<button className={['item',  this.className(this.props.item.logic)].join(' ')} onClick={this.handleChange} title={this.props.item.logic}>{this.props.item.label}</button>);
     }
 }
 
