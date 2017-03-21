@@ -15,11 +15,14 @@ class SourcesTagsSelector extends Component {
     }
     
     handleLogicChange(item, logic) {
-        let item2logic = this.state.item2logic;
-        item2logic[item.value] = logic;
-        this.setState({
-            item2logic: item2logic           
+        this.setState((prevState, props) => {
+            let item2logic = prevState.item2logic; 
+            item2logic[item.value] = logic;
+            return {
+                item2logic: item2logic
+            };
         }, () => {
+            this.refs.multiSelectInstance.focus();
             this.propagateValue();                    
         });
     }
@@ -63,20 +66,26 @@ class SourcesTagsSelector extends Component {
         }, {});
   
         return (<MultiSelect
+            ref='multiSelectInstance'
             groups = {groups}
             //groupsAsColumns = {true}
             options = {options}
             values = {this.state.selectedItems}
-            onValuesChange = {function(selectedItems){
-                self.setState({
-                    selectedItems: selectedItems
+            onValuesChange = {function(selectedItems) {
+                
+                self.setState((prevState, props) => {
+                    return { 
+                        selectedItems: selectedItems, 
+                        item2logic: selectedItems.length === 0 ? {} :   prevState.item2logic 
+                    };
                 }, () => {
                     self.propagateValue();                    
                 });
             }}
+ 
+            closeOnSelect = {false}
             
-            // filterOptions :: [Item] -> [Item] -> String -> [Item]
-    
+            // filterOptions :: [Item] -> [Item] -> String -> [Item]   
             filterOptions = {function(options, values, search){              
                 return _.chain(options)
                     .reject(function(option){
@@ -103,14 +112,17 @@ class SourcesTagsSelector extends Component {
                 return <div className = "removable-option">
                     <span className = "item"><SelectedItem item={item} type={type} handleLogicChange={self.handleLogicChange} /></span>
                     <span className = "x" onClick = {function(){
-                        let item2logic = self.state.item2logic;
-                        delete item2logic[item.value];
-                        self.setState({
-                            selectedItems: _.reject(self.state.selectedItems, function(option){
-                                return option.value == item.value;
-                            }),
-                            item2logic: item2logic
+                        
+                        self.setState((prevState, props) => {
+                            let item2logic = prevState.item2logic;
+                            delete item2logic[item.value];
+                            return { 
+                                selectedItems: _.reject(self.state.selectedItems,         function(option) {
+                                        return option.value == item.value;
+                                    }),
+                                item2logic: item2logic };
                         }, () => {
+                            self.refs.multiSelectInstance.focus();
                             self.propagateValue();
                         } );
                         

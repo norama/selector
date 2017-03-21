@@ -14,7 +14,6 @@ class SelectedItem extends Component {
     }
     
     handleChange(e) {
-        e.preventDefault();
         this.setState((prevState, props) => {
             const logic = this.next(prevState.logic);
             this.props.handleLogicChange(this.props.item, logic);
