@@ -6,19 +6,10 @@ class SelectedItem extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { logic: 'OR' };
-    }
-    
-    componentDidMount() {
-        this.props.handleLogicChange(this.props.item, this.state.logic);
     }
     
     handleChange(e) {
-        this.setState((prevState, props) => {
-            const logic = this.next(prevState.logic);
-            this.props.handleLogicChange(this.props.item, logic);
-            return { logic: logic };
-        });
+        this.props.handleLogicChange(this.props.item.value, this.next(this.props.item.logic));
     }
     
     next(logic) {
@@ -38,14 +29,9 @@ class SelectedItem extends Component {
             default: throw new RangeError('Unknown logic: ' + logic);
         }
     }
-    
-    logic() {
-        return this.state.logic;
-    }
-    
 
     render() {
-        return (<button className={['item', 'selected-item', this.className(this.state.logic)].join(' ')} onClick={this.handleChange}>{this.props.item.label}</button>);
+        return (<button className={['item', 'selected-item', this.className(this.props.item.logic)].join(' ')} onClick={this.handleChange} title={this.props.item.logic}>{this.props.item.label}</button>);
     }
 }
 

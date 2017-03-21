@@ -11,19 +11,23 @@ class SourcesTagsSelector extends Component {
     constructor(props) {
         super(props);
         this.handleLogicChange = this.handleLogicChange.bind(this);
-        this.state = {selectedItems: [], item2logic: {}};
+        this.state = {selectedItems: []};
     }
     
-    handleLogicChange(item, logic) {
+    handleLogicChange(value, logic) {
         this.setState((prevState, props) => {
-            let item2logic = prevState.item2logic; 
-            item2logic[item.value] = logic;
+            let selectedItems = prevState.selectedItems.map(function(selectedItem) {
+                if (selectedItem.value === value) {
+                    selectedItem.logic = logic;
+                }
+                return selectedItem;
+            });
             return {
-                item2logic: item2logic
+                selectedItems: selectedItems,
             };
         }, () => {
             this.multiSelectInstance.focus();
-            this.propagateValue();                    
+            this.propagateValue();  
         });
     }
     
@@ -32,12 +36,10 @@ class SourcesTagsSelector extends Component {
     }
     
     result() {
-        let result = {AND: [], OR: [], NOT: []};
-        for (const item in this.state.item2logic) {
-            const logic = this.state.item2logic[item];
-            result[logic].push(item);
-        }
-        return result;
+        return this.state.selectedItems.reduce(function(map, selectedItem) {
+            map[selectedItem.logic].push(selectedItem.value);
+            return map;
+        }, {AND: [], OR: [], NOT: []});
     }
 
     render() {
@@ -55,7 +57,8 @@ class SourcesTagsSelector extends Component {
                 return {
                     groupId: group.id,
                     label: item.label,
-                    value: item.value
+                    value: item.value,
+                    logic: 'OR'
                 }
             });
         }));
@@ -75,8 +78,7 @@ class SourcesTagsSelector extends Component {
                 
                 self.setState((prevState, props) => {
                     return { 
-                        selectedItems: selectedItems, 
-                        item2logic: selectedItems.length === 0 ? {} :   prevState.item2logic 
+                        selectedItems: selectedItems
                     };
                 }, () => {
                     self.propagateValue();                    
@@ -110,17 +112,15 @@ class SourcesTagsSelector extends Component {
             renderValue = {function(item){
                 const type =  groupId2Type[item.groupId];
                 return <div className = "removable-option">
-                    <span className = "item"><SelectedItem item={item} type={type} handleLogicChange={self.handleLogicChange} /></span>
+                    <span className = "item"><SelectedItem item={item} type={type}  handleLogicChange={self.handleLogicChange} /></span>
                     <span className = "x" onClick = {function(){
                         
                         self.setState((prevState, props) => {
-                            let item2logic = prevState.item2logic;
-                            delete item2logic[item.value];
                             return { 
                                 selectedItems: _.reject(self.state.selectedItems,         function(option) {
                                         return option.value == item.value;
-                                    }),
-                                item2logic: item2logic };
+                                    })
+                            };
                         }, () => {
                             self.multiSelectInstance.focus();
                             self.propagateValue();
