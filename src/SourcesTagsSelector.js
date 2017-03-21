@@ -60,6 +60,7 @@ class SourcesTagsSelector extends Component {
                     groupId: group.id,
                     label: item.label,
                     value: item.value,
+                    icon: item.icon,
                     logic: 'OR'
                 }
             });

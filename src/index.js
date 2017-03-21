@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import App from './App';
-import './index.css';
 import './selector.css'
 import '../node_modules/react-selectize/themes/default.css';
 import $ from 'jquery';
@@ -52,15 +50,18 @@ const data = [
         items: [
             {
                 label: 'CzechNews',
-                value: 'CzechNews'
+                value: 'CzechNews',
+                icon: 'img/blue.png'
             },
             {
                 label: 'Troll',
-                value: 'Troll'
+                value: 'Troll',
+                icon: 'img/red.png'
             },
             {
                 label: 'Propaganda',
-                value: 'Propaganda'
+                value: 'Propaganda',
+                icon: 'img/green.png'
             }
         ]
         

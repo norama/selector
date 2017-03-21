@@ -1,3 +1,14 @@
+.react-selectize .dropdown-menu {
+    max-height: 600px !important;
+    background-color: lightyellow !important;
+}
+
+.simple-group-title {
+    background-color: lightyellow !important;
+    font-family: monospace;
+    font-size: xx-large;
+}
+
 .multiselect {
     font-weight: bold;
 }
@@ -57,7 +68,7 @@
 
 .logic-and {
     color: darkred;
-    background-color: indianred;
+    background-color: lightcoral;
 }
 
 .logic-or {
