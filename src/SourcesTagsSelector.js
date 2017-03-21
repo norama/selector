@@ -22,7 +22,7 @@ class SourcesTagsSelector extends Component {
                 item2logic: item2logic
             };
         }, () => {
-            this.refs.multiSelectInstance.focus();
+            this.multiSelectInstance.focus();
             this.propagateValue();                    
         });
     }
@@ -66,7 +66,7 @@ class SourcesTagsSelector extends Component {
         }, {});
   
         return (<MultiSelect
-            ref='multiSelectInstance'
+            ref={(input) => { this.multiSelectInstance = input; }} 
             groups = {groups}
             //groupsAsColumns = {true}
             options = {options}
@@ -122,7 +122,7 @@ class SourcesTagsSelector extends Component {
                                     }),
                                 item2logic: item2logic };
                         }, () => {
-                            self.refs.multiSelectInstance.focus();
+                            self.multiSelectInstance.focus();
                             self.propagateValue();
                         } );
                         
