@@ -1,29 +1,79 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import App from './App';
-import { MultiSelect } from 'react-selectize';
-import './index.css';
+import './selector.css'
 import '../node_modules/react-selectize/themes/default.css';
-
-import CustomMultiSelect from './CustomMultiSelect';
-
-//ReactDOM.render(
-//  <App />,
-//  document.getElementById('root')
-//);
+import $ from 'jquery';
 
 
-function Form(props) {
+import SourcesTagsSelector from './SourcesTagsSelector';
 
-        var self = this, 
-            options = ["apple", "mango", "grapes", "melon", "strawberry"].map(function(fruit){
-                return {label: fruit, value: fruit}
-            });
-        return (<MultiSelect options = {options} placeholder = 'Select fruits' />);
+const data = [
+    { 
+        id: 'MainSources',
+        title: 'SOURCES',
+        type: 'source',
 
+        items: [
+            {
+                label: 'Aeronet.cz',
+                value: 'Aeronet.cz'
+            },
+            {
+                label: 'ParlamentniListy.cz',
+                value: 'ParlamentniListy.cz'
+            },
+            {
+                label: 'Novinky.cz',
+                value: 'Novinky.cz'
+            },
+            {
+                label: 'Blesk.cz',
+                value: 'Blesk.cz'
+            },
+            {
+                label: 'Lidovky.cz',
+                value: 'Lidovky.cz'
+            },
+            {
+                label: 'Ihned.cz',
+                value: 'Ihned.cz'
+            },
+        ]
+        
+    },
+    
+    { 
+        id: 'MainTags',
+        title: 'TAGS',
+        type: 'tag',
+
+        items: [
+            {
+                label: 'CzechNews',
+                value: 'CzechNews',
+                icon: 'img/blue.png'
+            },
+            {
+                label: 'Troll',
+                value: 'Troll',
+                icon: 'img/red.png'
+            },
+            {
+                label: 'Propaganda',
+                value: 'Propaganda',
+                icon: 'img/green.png'
+            }
+        ]
+        
+    }
+];
+
+function handleChange(value) {
+    $('#value').html(JSON.stringify(value, undefined, 4));
 }
 
-ReactDOM.render(
-  <CustomMultiSelect />,
-  document.getElementById('root')
+let component = ReactDOM.render(
+    <SourcesTagsSelector data={data} handleChange={handleChange} />,
+    document.getElementById('root')
 );
+

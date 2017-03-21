@@ -1,0 +1,82 @@
+.react-selectize .dropdown-menu {
+    max-height: 600px !important;
+    background-color: lightyellow !important;
+}
+
+.simple-group-title {
+    background-color: lightyellow !important;
+    font-family: monospace;
+    font-size: xx-large;
+}
+
+.multiselect {
+    font-weight: bold;
+}
+
+.menu-option {
+    margin-left: 20px;
+}
+
+.menu-option .source:hover {
+    background-color: gray !important;
+}
+
+.menu-option .tag:hover {
+    background-color: gray !important;
+}
+
+.menu-option .source {
+    background-color: lightblue;
+    color: blue;  
+    padding: 10px;
+}
+
+.menu-option .tag {
+    background-color: lightsalmon;
+    color: saddlebrown;
+    padding: 10px;
+}
+
+.selected-option {
+    margin: 2px;
+    padding: 2px;
+}
+
+.selected-option .source {
+    border: 1px solid darkgray;
+    background-color: lightblue;
+    padding: 3px;
+}
+
+.selected-option .tag {
+    border: 1px solid darkgray;
+    background-color: lightsalmon;
+    padding: 3px;
+}
+
+.selected-option .x {
+    cursor: pointer;
+    padding: 2px;   
+    color: #707070;
+}
+
+.selected-option .item {
+    cursor: pointer;
+    padding: 2px;   
+    font-weight: bold;
+}
+
+.logic-and {
+    color: darkred;
+    background-color: lightcoral;
+}
+
+.logic-or {
+    color: green;
+    background-color: lightgreen;
+}
+
+.logic-not {
+    color: dimgray;
+    background-color: lightgray;
+}
