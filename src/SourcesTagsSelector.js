@@ -32,7 +32,9 @@ class SourcesTagsSelector extends Component {
     }
     
     propagateValue() {
-        this.props.handleChange(this.result());
+        if (this.props.handleChange) {
+            this.props.handleChange(this.result());            
+        }
     }
     
     result() {
