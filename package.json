@@ -2,6 +2,7 @@
   "name": "sources-tags-selector",
   "version": "0.1.2",
   "private": false,
+  "homepage": "https://norama.github.io/selector",
   "dependencies": {
     "jquery": "^3.2.0",
     "react": "^15.4.2",
@@ -13,13 +14,19 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "enzyme": "^2.7.1",
+    "gh-pages": "^0.12.0",
+    "react-addons-test-utils": "^15.4.2",
+    "react-scripts": "0.9.5",
+    "react-test-renderer": "^15.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "now-start": "serve build/"
+    "now-start": "serve build/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

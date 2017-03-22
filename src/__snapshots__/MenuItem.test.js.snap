@@ -1,0 +1,21 @@
+exports[`test component DOM matches snapshot 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "float": "left",
+        "marginRight": "5px",
+      }
+    }>
+    <img
+      alt="#"
+      height="16"
+      src="icon"
+      width="16" />
+  </div>
+   
+  <div>
+    label
+  </div>
+</div>
+`;

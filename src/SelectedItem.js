@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Logic from './Logic';
 
 class SelectedItem extends Component {
     
@@ -9,16 +9,7 @@ class SelectedItem extends Component {
     }
     
     handleChange(e) {
-        this.props.handleLogicChange(this.props.item.value, this.next(this.props.item.logic));
-    }
-    
-    next(logic) {
-        switch (logic) {
-            case 'OR': return 'AND';
-            case 'AND': return 'NOT';
-            case 'NOT': return 'OR';
-            default: throw new RangeError('Unknown logic: ' + logic);
-        }
+        this.props.handleLogicChange(this.props.item.value, Logic.next(this.props.item.logic));
     }
     
     className(logic) {

@@ -5,13 +5,67 @@ import MenuItem from './MenuItem';
 import SelectedItem from './SelectedItem';
 import Filter from './Filter';
 
-
 class SourcesTagsSelector extends Component {
     
     constructor(props) {
         super(props);
         this.handleLogicChange = this.handleLogicChange.bind(this);
         this.state = {selectedItems: []};
+        this.init();
+    }
+    
+    init() {
+        
+        const data = this.props.data ? this.props.data : [];
+        
+        this.groups = data.map(function(group) {
+            return {
+                groupId: group.id,
+                title: group.title
+            }
+        });
+        
+        this.options = [].concat.apply([], data.map(function(group) {
+            return group.items.map(function(item) {
+                return {
+                    groupId: group.id,
+                    label: item.label,
+                    value: item.value,
+                    icon: item.icon,
+                    logic: 'OR'
+                }
+            });
+        }));
+        
+        this.groupId2Type = data.reduce(function(map, group) {
+            map[group.id] = group.type;
+            return map;
+        }, {});
+    }
+    
+    componentDidMount() {        
+        this.setState({
+            selectedItems: this.value2items()
+        }, () => {
+            this.propagateValue();  
+        });
+    }
+    
+    value2items() {
+        let items = [];
+        if (this.props.value) {
+            for (let logic in this.props.value) {
+                for (let itemValue of this.props.value[logic]) {
+                    let item = this.options.find(function(option) { 
+                        return option.value === itemValue; 
+                    });
+                    item = JSON.parse(JSON.stringify(item)); // clone
+                    item.logic = logic;
+                    items.push(item);
+                }
+            }
+        }
+        return items;
     }
     
     handleLogicChange(value, logic) {
@@ -46,38 +100,22 @@ class SourcesTagsSelector extends Component {
 
     render() {
         const self = this;
-        
-        const groups = this.props.data.map(function(group) {
-            return {
-                groupId: group.id,
-                title: group.title
-            }
-        });
-        
-        const options = [].concat.apply([], this.props.data.map(function(group) {
-            return group.items.map(function(item) {
-                return {
-                    groupId: group.id,
-                    label: item.label,
-                    value: item.value,
-                    icon: item.icon,
-                    logic: 'OR'
-                }
-            });
-        }));
-        
-        const groupId2Type = this.props.data.reduce(function(map, group) {
-            map[group.id] = group.type;
-            return map;
-        }, {});
   
         return (<MultiSelect
             ref={(input) => { this.multiSelectInstance = input; }} 
+    
             className = 'multiselect'
-            groups = {groups}
+            
+            groups = {this.groups}
+            
+            //open = {true}
+
             //groupsAsColumns = {true}
-            options = {options}
+            
+            options = {this.options}
+            
             values = {this.state.selectedItems}
+            
             onValuesChange = {function(selectedItems) {
                 
                 self.setState((prevState, props) => {
@@ -100,7 +138,7 @@ class SourcesTagsSelector extends Component {
                             }).indexOf(option.value) > -1
                         })
                     .filter(function(option) {
-                        const type =  groupId2Type[option.groupId];
+                        const type =  self.groupId2Type[option.groupId];
                         return Filter[type](option.label, search);
                     })
                     .value();
@@ -108,23 +146,24 @@ class SourcesTagsSelector extends Component {
             
 
             renderOption = {function(item){
-                const type =  groupId2Type[item.groupId];
+                const type =  self.groupId2Type[item.groupId];
                 return <div className = {['menu-option', type.toLowerCase()].join(' ')} >
                     <div className={type}>
-                        <MenuItem item={item} type={type} />
+                        <MenuItem item={item} />
                     </div>
                 </div>
             }}
+            
             renderValue = {function(item){
-                const type =  groupId2Type[item.groupId];
+                const type =  self.groupId2Type[item.groupId];
                 return <div className = "selected-option">
                     <div className={type}>
-                    <span className = "item"><SelectedItem item={item} type={type}  handleLogicChange={self.handleLogicChange} /></span>
+                    <span className = "item"><SelectedItem item={item} handleLogicChange={self.handleLogicChange} /></span>
                     <span className = "x" onClick = {function(){
                         
                         self.setState((prevState, props) => {
                             return { 
-                                selectedItems: _.reject(self.state.selectedItems,         function(option) {
+                                selectedItems: _.reject(self.state.selectedItems,               function(option) {
                                         return option.value == item.value;
                                     })
                             };
@@ -137,11 +176,11 @@ class SourcesTagsSelector extends Component {
                     </div>
                 </div>;
             }}
-            placeholder = "Select sources and tags"
+            
+            placeholder = { this.props.placeholder ? this.props.placeholder : "Select sources and tags" }
         />);
         
     }
-    
     
 }
 
