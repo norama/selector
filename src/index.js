@@ -77,4 +77,4 @@ let component = ReactDOM.render(
     document.getElementById('root')
 );
 
-module.exports = require('./SourcesTagsSelector');
+export default SourcesTagsSelector;
