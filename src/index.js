@@ -76,5 +76,3 @@ let component = ReactDOM.render(
     <SourcesTagsSelector data={data} handleChange={handleChange} />,
     document.getElementById('root')
 );
-
-export default SourcesTagsSelector;
