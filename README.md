@@ -53,6 +53,11 @@ Demo with sample configuration in [src/index.js](https://github.com/norama/selec
 ```
 npm install sources-tags-selector --save
 ```
+Import component:
+
+```
+import SourcesTagsSelector from 'sources-tags-selector';
+```
 
 Import styles:
 
@@ -71,10 +76,10 @@ import '../node_modules/react-selectize/themes/default.css';
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './selector.css'
+import '../node_modules/sources-tags-selector/lib/selector.css'
 import '../node_modules/react-selectize/themes/default.css';
 
-import SourcesTagsSelector from './SourcesTagsSelector';
+import SourcesTagsSelector from 'sources-tags-selector';
 
 const data = [
     { 
