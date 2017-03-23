@@ -160,11 +160,20 @@ Placeholder in the selected options widget.
 
 ## Install
 
-NPM module installation is not yet available :-(. 
+```
+npm install sources-tags-selector --save
+```
 
-Clone or download this repository and merge it into your project. 
+Import styles:
 
-In the project directory run `npm install` to download and install dependencies into the node_modules directory
+```
+import '../node_modules/sources-tags-selector/lib/selector.css';
+import '../node_modules/react-selectize/themes/default.css';
+```
+
+**Reference**
+
+[Distributing React Components](http://krasimirtsonev.com/blog/article/distributing-react-components-babel-browserify-webpack-uglifyjs)
 
 ## Available Scripts
 
