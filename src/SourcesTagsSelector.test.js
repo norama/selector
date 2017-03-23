@@ -12,7 +12,6 @@ const data = [
 
         items: [
             {
-                label: 'Aeronet.cz',
                 value: 'Aeronet.cz'
             },
             {
@@ -30,7 +29,6 @@ const data = [
 
         items: [
             {
-                label: 'Troll',
                 value: 'Troll'
             },
             {
