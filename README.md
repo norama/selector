@@ -36,6 +36,7 @@ As options are selected, they are removed from the menu and displayed among the 
 * `OR` (green, initial state)
 * `AND` (red)
 * `NOT` (gray)
+
 The state of the selected options can be changed by clicking on the button in their widget.
 Options can be unselected by clicking on the `X` sign in their widget.
 
@@ -157,7 +158,7 @@ Example:
 
 ### ```placeholder``` - optional (default: 'Select sources and tags')
 
-Placeholder in selected options widget.
+Placeholder in the selected options widget.
 
 ## Install
 
