@@ -6,6 +6,7 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 
 - [Sources and Tags Selector](#sources-and-tags-selector)
 - [Demo](#demo)
+- [Configuration](#demo)
 - [Usage](#usage)
 - [Install](#install)
 - [Available Scripts](#available-scripts)
@@ -31,27 +32,12 @@ JSON composed by the selected options and their assigned logic state:
 }
 ```
 
-Options are grouped, each group has the following structure:
-* id: unique identifier
-* title: display title
-* type: `source` or `tag` 
-   
-   `source` groups are filtered by fulltext search upon typing in the multiselect control and only the filtered list of options are shown in the dropdown menu
-   
-   `tag` groups are not filtered but always shown comletely
-   
-* items: list of elements:
-  * label (optional, default: value)
-  * value
-  * icon: link to icon image to be displayed in menu (optional, default: none)
-
 As options are selected, they are removed from the menu and displayed among the selected items with corresponding logic state: 
 * `OR` (green, initial state)
 * `AND` (red)
 * `NOT` (gray)
 The state of the selected options can be changed by clicking on the button in their widget.
 Options can be unselected by clicking on the `X` sign in their widget.
-
 
 ## Demo
 
@@ -110,16 +96,68 @@ const data = [
     }
 ];
 
+const value = { AND: [ 'red', 'green' ], NOT: [ 'blue' ] };
 
 function handleChange(value) {
     alert(JSON.stringify(value, undefined, 4));
 }
 
 ReactDOM.render(
-    <SourcesTagsSelector data={data} handleChange={handleChange} placeholder='Select color' />,
+    <SourcesTagsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color' />,
     document.getElementById('root')
 );
 ```
+
+## Configuration
+
+```html
+<SourcesTagsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color tags' />
+```
+
+### ```data``` - mandatory
+
+JSON of grouped options, each group has the following structure:
+
+* id: unique identifier
+* title: display title
+* type: `source` or `tag` 
+   
+   `source` groups are filtered by fulltext search upon typing in the multiselect control and only the filtered list of options are shown in the dropdown menu
+   
+   `tag` groups are not filtered but always shown comletely
+   
+* items: list of elements:
+  * label (optional, default: value)
+  * value
+  * icon: link to icon image to be displayed in menu (optional, default: none)
+  
+### ```handleChange``` - optional (default: none)
+
+Callback function for value change, accepts a single parameter with the current value in JSON:
+
+```
+{
+  "AND": [item],
+  "OR": [item],
+  "NOT": [item]
+}
+```
+
+### ```value``` - optional (default: empty)
+
+Initial value in JSON. 
+
+Example:
+```
+{ 
+  "AND": [ 'red', 'green' ], 
+  "NOT": [ 'blue' ] 
+}
+```
+
+### ```placeholder``` - optional (default: 'Select sources and tags')
+
+Placeholder in selected options widget.
 
 ## Install
 
