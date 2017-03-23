@@ -6,9 +6,9 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 
 - [Sources and Tags Selector](#sources-and-tags-selector)
 - [Demo](#demo)
-- [Configuration](#configuration)
-- [Usage](#usage)
 - [Install](#install)
+- [Usage](#usage-jsx)
+- [Configuration](#configuration)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
   - [npm test](#npm-test)
@@ -47,6 +47,24 @@ Options are added to `source` or `tag` groups:
 ## Demo
 
 Demo with sample configuration in [src/index.js](https://github.com/norama/selector/blob/master/src/index.js) can be seen [here](https://norama.github.io/selector).
+
+## Install
+
+```
+npm install sources-tags-selector --save
+```
+
+Import styles:
+
+```
+import '../node_modules/sources-tags-selector/lib/selector.css';
+import '../node_modules/react-selectize/themes/default.css';
+```
+
+**Reference**
+
+[Distributing React Components](http://krasimirtsonev.com/blog/article/distributing-react-components-babel-browserify-webpack-uglifyjs)
+
 
 ## Usage (jsx)
 
@@ -157,23 +175,6 @@ Example:
 ### ```placeholder``` - optional (default: 'Select sources and tags')
 
 Placeholder in the selected options widget.
-
-## Install
-
-```
-npm install sources-tags-selector --save
-```
-
-Import styles:
-
-```
-import '../node_modules/sources-tags-selector/lib/selector.css';
-import '../node_modules/react-selectize/themes/default.css';
-```
-
-**Reference**
-
-[Distributing React Components](http://krasimirtsonev.com/blog/article/distributing-react-components-babel-browserify-webpack-uglifyjs)
 
 ## Available Scripts
 
