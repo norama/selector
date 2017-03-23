@@ -40,7 +40,7 @@ As options are selected, they are removed from the menu and displayed among the 
 The state of the selected options can be changed by clicking on the button in their widget.
 Options can be unselected by clicking on the `X` sign in their widget.
 
-Options are grouped into `source` or `tag` groups:
+Options are added to `source` or `tag` groups:
 * `source` groups are filtered by fulltext search upon typing in the multiselect control and only the filtered list of options are shown in the dropdown menu 
 * `tag` groups are not filtered but always shown comletely
    
