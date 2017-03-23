@@ -100,7 +100,7 @@ const data = [
 const value = { AND: [ 'red', 'green' ], NOT: [ 'blue' ] };
 
 function handleChange(value) {
-    alert(JSON.stringify(value, undefined, 4));
+    console.log(JSON.stringify(value, undefined, 4));
 }
 
 ReactDOM.render(
@@ -189,7 +189,7 @@ You will also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
+See the section in [guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) about [running tests](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests) for more information.
 
 ### `npm run build`
 
