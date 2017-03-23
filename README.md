@@ -120,15 +120,15 @@ ReactDOM.render(
 
 ### ```data``` - mandatory
 
-JSON of grouped options, each group has the following structure:
+JSON of grouped options, each group has the following structure (attributes are mandatory unless declared optional):
 
-* id: unique identifier
-* title: display title
-* type: `source` or `tag` 
-* items: list of elements:
-  * label (optional, default: value)
-  * value
-  * icon: link to icon image to be displayed in menu (optional, default: none)
+* **id**: unique identifier
+* **title**: display title
+* **type**: `source` or `tag` 
+* **items**: list of elements:
+  * **label** (optional, default: value)
+  * **value**
+  * **icon**: link to icon image to be displayed in menu (optional, default: none)
   
 ### ```handleChange``` - optional (default: none)
 
