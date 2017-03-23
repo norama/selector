@@ -51,7 +51,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './selector.css'
 import '../node_modules/react-selectize/themes/default.css';
-import $ from 'jquery';
 
 import SourcesTagsSelector from './SourcesTagsSelector';
 
