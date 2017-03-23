@@ -59,7 +59,7 @@ Demo with sample configuration in [src/index.js](https://github.com/norama/selec
 
 ## Usage (jsx)
 
-```
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './selector.css'
@@ -131,7 +131,7 @@ In the project directory run `npm install` to download and install dependencies 
 
 ## Available Scripts
 
-This section is based on the [create-react-app guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+This section is based on the [create-react-app guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts).
 
 In the project directory, you can run:
 
