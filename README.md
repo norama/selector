@@ -9,6 +9,7 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 - [Usage](#usage)
 - [Features](#features)
 - [Install](#install)
+- [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
   - [npm test](#npm-test)
@@ -18,6 +19,41 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 
 ## Sources and Tags Selector
 
+Sources and Tags Selector is a multiple selector component written in [React](https://facebook.github.io/react/).
+The component is based on [react-selectize](https://github.com/furqanZafar/react-selectize/).
+
+Each selected option has a logic state: `OR` (initial), `AND` or `NOT` and the value of the selector is a 
+JSON composed by the selected options and their assigned logic state:
+```
+{
+  "AND": [item],
+  "OR": [item],
+  "NOT": [item]
+}
+```
+
+Options are grouped, each group has the following structure:
+* id: unique identifier
+* title: display title
+* type: `source` or `tag` 
+   
+   `source` groups are filtered by fulltext search upon typing in the multiselect control and only the filtered list of options are shown in the dropdown menu
+   
+   `tag` groups are not filtered but always shown comletely
+   
+* items: list of elements:
+  * label (optional, default: value)
+  * value
+  * icon: link to icon image to be displayed in menu (optional, default: none)
+
+As options are selected, they are removed from the menu and displayed among the selected items with corresponding logic state: 
+* `OR` (green, initial state)
+* `AND` (red)
+* `NOT` (gray)
+The state of the selected options can be changed by clicking on the button in their widget.
+Options can be unselected by clicking on the `X` sign in their widget.
+
+
 ## Demo
 
 ## Usage
@@ -25,6 +61,8 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 ## Features
 
 ## Install
+
+## Folder Structure
 
 ## Available Scripts
 
