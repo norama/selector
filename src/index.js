@@ -15,27 +15,21 @@ const data1 = [
 
         items: [
             {
-                label: 'Aeronet.cz',
                 value: 'Aeronet.cz'
             },
             {
-                label: 'ParlamentniListy.cz',
                 value: 'ParlamentniListy.cz'
             },
             {
-                label: 'Novinky.cz',
                 value: 'Novinky.cz'
             },
             {
-                label: 'Blesk.cz',
                 value: 'Blesk.cz'
             },
             {
-                label: 'Lidovky.cz',
                 value: 'Lidovky.cz'
             },
             {
-                label: 'Ihned.cz',
                 value: 'Ihned.cz'
             },
         ]
@@ -49,17 +43,14 @@ const data1 = [
 
         items: [
             {
-                label: 'CzechNews',
                 value: 'CzechNews',
                 icon: 'img/blue.png'
             },
             {
-                label: 'Troll',
                 value: 'Troll',
                 icon: 'img/red.png'
             },
             {
-                label: 'Propaganda',
                 value: 'Propaganda',
                 icon: 'img/green.png'
             }

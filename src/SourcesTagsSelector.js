@@ -29,7 +29,7 @@ class SourcesTagsSelector extends Component {
             return group.items.map(function(item) {
                 return {
                     groupId: group.id,
-                    label: item.label,
+                    label: item.label ? item.label : item.value,
                     value: item.value,
                     icon: item.icon,
                     logic: 'OR'
