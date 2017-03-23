@@ -14,7 +14,9 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.0",
     "enzyme": "^2.7.1",
     "gh-pages": "^0.12.0",
     "react-addons-test-utils": "^15.4.2",
@@ -29,6 +31,6 @@
     "now-start": "serve build/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "prepublish": "babel ./src --out-dir ./lib --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports"
+    "prepublish": "babel ./src --out-dir ./lib --ignore index.js --copy-files --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports"
   }
 }
