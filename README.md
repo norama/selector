@@ -116,7 +116,7 @@ function handleChange(value) {
 }
 
 ReactDOM.render(
-    <SourcesTagsSelector data={data} handleChange={handleChange} />,
+    <SourcesTagsSelector data={data} handleChange={handleChange} placeholder='Select color' />,
     document.getElementById('root')
 );
 ```
@@ -176,8 +176,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ```
 selector/
   README.md
-  node_modules/
   package.json
+  node_modules/
   public/
     img/
     index.html
@@ -191,14 +191,14 @@ selector/
     SourcesTagsSelector.js
     SourcesTagsSelector.test.js
     index.js
-    logo.svg
 ```
 
 * `README.md`: this file
 * `package.json`: npm project configuration file
 * `node_modules/`: installed npm packages
 * `public/`: HTML and resources for demo
-* `__snapshots__/, *.test.js`: test files
+* `index.js`: demo application 
 * `SourcesTagsSelector.js`: selector component
 * `MenuItem.js`: option in menu component
 * `SelectedItem.js`: selected option with logic state component
+* `__snapshots__/, *.test.js`: test files
