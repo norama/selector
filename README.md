@@ -126,8 +126,8 @@ JSON of grouped options, each group has the following structure (attributes are 
 * **title**: display title
 * **type**: `source` or `tag` 
 * **items**: list of elements:
-  * **label** (optional, default: value)
-  * **value**
+  * **label**: displayed text (optional, default: value)
+  * **value**: identifier, also used in the item lists of component value 
   * **icon**: link to icon image to be displayed in menu (optional, default: none)
   
 ### ```handleChange``` - optional (default: none)
