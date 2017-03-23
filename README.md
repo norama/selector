@@ -6,7 +6,7 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 
 - [Sources and Tags Selector](#sources-and-tags-selector)
 - [Demo](#demo)
-- [Configuration](#demo)
+- [Configuration](#configuration)
 - [Usage](#usage)
 - [Install](#install)
 - [Available Scripts](#available-scripts)
