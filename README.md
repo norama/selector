@@ -40,6 +40,10 @@ As options are selected, they are removed from the menu and displayed among the 
 The state of the selected options can be changed by clicking on the button in their widget.
 Options can be unselected by clicking on the `X` sign in their widget.
 
+Options are grouped into `source` or `tag` groups:
+* `source` groups are filtered by fulltext search upon typing in the multiselect control and only the filtered list of options are shown in the dropdown menu 
+* `tag` groups are not filtered but always shown comletely
+   
 ## Demo
 
 Demo with sample configuration in [src/index.js](https://github.com/norama/selector/blob/master/src/index.js) can be seen [here](https://norama.github.io/selector).
@@ -121,11 +125,6 @@ JSON of grouped options, each group has the following structure:
 * id: unique identifier
 * title: display title
 * type: `source` or `tag` 
-   
-   `source` groups are filtered by fulltext search upon typing in the multiselect control and only the filtered list of options are shown in the dropdown menu
-   
-   `tag` groups are not filtered but always shown comletely
-   
 * items: list of elements:
   * label (optional, default: value)
   * value
@@ -218,6 +217,8 @@ selector/
     favicon.ico
   src/
     __snapshots__/
+    Filter.js
+    Logic.js
     MenuItem.js
     MenuItem.test.js
     SelectedItem.js
@@ -225,6 +226,7 @@ selector/
     SourcesTagsSelector.js
     SourcesTagsSelector.test.js
     index.js
+    selector.css
 ```
 
 * `README.md`: this file
@@ -233,6 +235,9 @@ selector/
 * `public/`: HTML and resources for demo
 * `index.js`: demo application 
 * `SourcesTagsSelector.js`: selector component
+* `selector.css`: selector styles
+* `Filter.js`: filter configuration for `source` and `tag` groups
+* `Logic.js`: logic state transition
 * `MenuItem.js`: option in menu component
 * `SelectedItem.js`: selected option with logic state component
 * `__snapshots__/, *.test.js`: test files
