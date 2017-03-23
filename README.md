@@ -170,13 +170,9 @@ In the project directory run `npm install` to download and install dependencies 
 
 ## Available Scripts
 
-This section is based on the [create-react-app guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts).
+This section is based on the [available scripts](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts) section of the [guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 In the project directory, you can run:
-
-### `npm start`
-
-Runs the In the project directory, you can run:
 
 ### `npm start`
 
