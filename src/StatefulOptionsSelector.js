@@ -16,7 +16,13 @@ class StatefulOptionsSelector extends Component {
     
     init() {
         
-        const data = this.props.data ? this.props.data : [];
+        let data = this.props.data ? this.props.data : [];
+        if (this.props.maxGroupOptionsCount) {
+            data = data.map(function(group) {
+                group.items.push(limitSignOption(group.id));
+                return group;
+            });
+        }
         
         this.groups = data.map(function(group) {
             return {
@@ -32,6 +38,7 @@ class StatefulOptionsSelector extends Component {
                     label: item.label ? item.label : item.value,
                     value: item.value,
                     icon: item.icon,
+                    selectable: item.selectable,
                     logic: 'OR'
                 }
             });
@@ -131,24 +138,27 @@ class StatefulOptionsSelector extends Component {
             
             // filterOptions :: [Item] -> [Item] -> String -> [Item]   
             filterOptions={function(options, values, search){              
-                return _.chain(options)
+                let filteredOptions = _.chain(options)
                     .reject(function(option){
                             return self.state.selectedItems.map(function(item){
                                 return item.value
-                            }).indexOf(option.value) > -1
+                            }).indexOf(option.value) > -1 || 
+                                isLimitSignOption(option);
                         })
                     .filter(function(option) {
                         const type =  self.groupId2Type[option.groupId];
                         return Filter[type](option.label, search);
                     })
                     .value();
+                return limitOptions(filteredOptions, self.props.maxGroupOptionsCount);
             }}
             
 
             renderOption={function(item){
                 const type = self.groupId2Type[item.groupId];
-                return <div className={['menu-option', type.toLowerCase()].join(' ')} >
-                    <div className={type}>
+                const optionClassName = isLimitSignOption(item) ? 'limit-sign' : 'selectable';
+                return <div className={['menu-option', type.toLowerCase(), optionClassName].join(' ')} >
+                    <div className={[type.toLowerCase(), optionClassName].join(' ')}>
                         <MenuItem item={item} />
                     </div>
                 </div>
@@ -183,6 +193,31 @@ class StatefulOptionsSelector extends Component {
         
     }
     
+}
+
+export function limitOptions(options, maxGroupOptionsCount) {
+    if (maxGroupOptionsCount && maxGroupOptionsCount < options.length) {
+        let groupId2options = _.groupBy(options, 'groupId');
+        _.each(groupId2options, (groupOptions, groupId) => {
+            if (groupId2options[groupId].length > maxGroupOptionsCount) {
+                groupId2options[groupId] = _.chain(groupId2options[groupId])
+                                    .slice(0, maxGroupOptionsCount)
+                                    .push(limitSignOption(groupId))
+                                    .value();
+            }
+        });
+        options = _.flatten(_.values(groupId2options));
+    }
+    
+    return options;
+}
+
+function limitSignOption(groupId) {
+    return {value: '...', label: '...', groupId: groupId, selectable: false};
+}
+
+function isLimitSignOption(option) {
+    return option.value === '...';
 }
 
 export default StatefulOptionsSelector;

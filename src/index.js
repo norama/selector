@@ -65,7 +65,7 @@ function handleChange1(value) {
 }
 
 ReactDOM.render(
-    <StatefulOptionsSelector data={data1} handleChange={handleChange1} />,
+    <StatefulOptionsSelector data={data1} handleChange={handleChange1} maxGroupOptionsCount={3} />,
     document.getElementById('root1')
 );
 

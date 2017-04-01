@@ -17,12 +17,12 @@
     margin-left: 20px;
 }
 
-.menu-option .source:hover {
+.menu-option .selectable:hover {
     background-color: gray !important;
 }
 
-.menu-option .tag:hover {
-    background-color: gray !important;
+.menu-option .limit-sign {
+    cursor: default !important;
 }
 
 .menu-option .source {

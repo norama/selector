@@ -133,7 +133,12 @@ function handleChange(value) {
 }
 
 ReactDOM.render(
-    <StatefulOptionsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color' />,
+    <StatefulOptionsSelector 
+        data={data} 
+        handleChange={handleChange} 
+        value={value} 
+        placeholder='Select color' 
+    />,
     document.getElementById('root')
 );
 ```
@@ -141,7 +146,13 @@ ReactDOM.render(
 ## Configuration
 
 ```html
-<StatefulOptionsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color tags' />
+<StatefulOptionsSelector 
+    data={data} 
+    handleChange={handleChange} 
+    value={value} 
+    maxGroupOptionsCount={count}
+    placeholder='Select color tags' 
+/>
 ```
 
 ### ```data``` - mandatory

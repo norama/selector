@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount, shallow, render } from 'enzyme';
 
-import StatefulOptionsSelector from './StatefulOptionsSelector';
+import StatefulOptionsSelector, { limitOptions } from './StatefulOptionsSelector';
 
 const data = [
     { 
@@ -154,5 +154,23 @@ it('unselect all', () => {
     );
     component.find('svg.react-selectize-reset-button').first().simulate('click');
     
+});
+    
+it('maxGroupOptionsCount', () => {
+    const options = [
+        {value: 'opt11', groupId: 'g1'}, 
+        {value: 'opt12', groupId: 'g1'}, 
+        {value: 'opt13', groupId: 'g1'},
+        {value: 'opt21', groupId: 'g2'}
+    ];
+    
+    const limited = limitOptions(options, 2);
+    
+    expect(limited).toEqual([ 
+        { value: 'opt11', groupId: 'g1' },
+        { value: 'opt12', groupId: 'g1' },
+        { value: '...', label: '...', selectable: false, groupId: 'g1' },
+        { value: 'opt21', groupId: 'g2' } 
+    ]);
 });
 
