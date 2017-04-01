@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount, shallow, render } from 'enzyme';
 
-import SourcesTagsSelector from './SourcesTagsSelector';
+import StatefulOptionsSelector from './StatefulOptionsSelector';
 
 const data = [
     { 
@@ -48,12 +48,12 @@ const value2 = { OR: [ 'Aeronet.cz' ], AND: [ 'Troll' ] };
 
 it('renders without data', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<SourcesTagsSelector />, div);
+    ReactDOM.render(<StatefulOptionsSelector />, div);
 });
     
 it('renders with data', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<SourcesTagsSelector data={data} />, div);
+    ReactDOM.render(<StatefulOptionsSelector data={data} />, div);
 });
     
 it('select 1 item', () => {
@@ -62,7 +62,7 @@ it('select 1 item', () => {
     };
     
     const component = mount(
-        <SourcesTagsSelector data={data} handleChange={handleChange} value={value1} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} />
     );
 });    
 
@@ -79,7 +79,7 @@ it('select 1 item with logic change', () => {
     };
     
     const component = mount(
-        <SourcesTagsSelector data={data} handleChange={handleChange} value={value1} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} />
     );
     
     component.find('button.logic-or').first().simulate('click');
@@ -94,7 +94,7 @@ it('select 2 items', () => {
     };
     
     const component = mount(
-        <SourcesTagsSelector data={data} handleChange={handleChange} value={value2} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} />
     );
 });   
  
@@ -112,7 +112,7 @@ it('select 2 items with logic change', () => {
     };
     
     const component = mount(
-        <SourcesTagsSelector data={data} handleChange={handleChange} value={value2} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} />
     );
     
     component.find('div.source button.logic-or').first().simulate('click');
@@ -132,7 +132,7 @@ it('unselect item with x', () => {
     };
     
     const component = mount(
-        <SourcesTagsSelector data={data} handleChange={handleChange} value={value1} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} />
     );
     component.find('span.x').first().simulate('click');
     
@@ -150,7 +150,7 @@ it('unselect all', () => {
     };
     
     const component = mount(
-        <SourcesTagsSelector data={data} handleChange={handleChange} value={value2} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} />
     );
     component.find('svg.react-selectize-reset-button').first().simulate('click');
     

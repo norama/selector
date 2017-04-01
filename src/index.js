@@ -5,7 +5,7 @@ import '../node_modules/react-selectize/themes/default.css';
 import $ from 'jquery';
 
 
-import SourcesTagsSelector from './SourcesTagsSelector';
+import StatefulOptionsSelector from './StatefulOptionsSelector';
 
 const data1 = [
     { 
@@ -65,7 +65,7 @@ function handleChange1(value) {
 }
 
 ReactDOM.render(
-    <SourcesTagsSelector data={data1} handleChange={handleChange1} />,
+    <StatefulOptionsSelector data={data1} handleChange={handleChange1} />,
     document.getElementById('root1')
 );
 
@@ -104,6 +104,6 @@ function handleChange2(value) {
 }
 
 ReactDOM.render(
-    <SourcesTagsSelector data={data2} handleChange={handleChange2} value={value2} placeholder='Select color tags' />,
+    <StatefulOptionsSelector data={data2} handleChange={handleChange2} value={value2} placeholder='Select color tags' />,
     document.getElementById('root2')
 );

@@ -4,7 +4,7 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 
 ## Table of Contents
 
-- [Sources and Tags Selector](#sources-and-tags-selector)
+- [Stateful Options Selector](#stateful-options-selector)
 - [Demo](#demo)
 - [Install](#install)
 - [Usage](#usage-jsx)
@@ -17,12 +17,22 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 - [Folder Structure](#folder-structure)
 
 
-## Sources and Tags Selector
+## Stateful Options Selector
 
-Sources and Tags Selector is a multiple selector component written in [React](https://facebook.github.io/react/).
+Stateful Options Selector is a multiple selector component written in [React](https://facebook.github.io/react/),
+where each selected options can have an associated user selected state. The set of possible states is configurable.
 The component is based on [react-selectize](https://github.com/furqanZafar/react-selectize/).
 
-Each selected option has a logic state: `OR` (initial), `AND` or `NOT` and the value of the selector is a 
+The state of the selected options can be changed by clicking on the button in their widget.
+Options can be unselected by clicking on the `X` sign in their widget.
+
+Options can also be divided into option groups, each group having an ID and a display title.
+   
+## Demo
+
+Demo with sample configuration in [src/index.js](https://github.com/norama/selector/blob/master/src/index.js) can be seen [here](https://norama.github.io/selector).
+
+In this example each selected option has a logic state: `OR` (initial), `AND` or `NOT` and the value of the selector is a 
 JSON composed by the selected options and their assigned logic state:
 ```
 {
@@ -37,27 +47,20 @@ As options are selected, they are removed from the menu and displayed among the 
 * `AND` (red)
 * `NOT` (gray)
 
-The state of the selected options can be changed by clicking on the button in their widget.
-Options can be unselected by clicking on the `X` sign in their widget.
-
 Options are added to `source` or `tag` groups:
 * `source` groups are filtered by fulltext search upon typing in the multiselect control and only the filtered list of options are shown in the dropdown menu 
 * `tag` groups are not filtered but always shown comletely
-   
-## Demo
-
-Demo with sample configuration in [src/index.js](https://github.com/norama/selector/blob/master/src/index.js) can be seen [here](https://norama.github.io/selector).
 
 ## Install
 
 ```
-npm install sources-tags-selector --save
+npm install stateful-options-selector --save
 ```
 
 Import styles:
 
 ```
-import '../node_modules/sources-tags-selector/lib/selector.css';
+import '../node_modules/stateful-options-selector/lib/selector.css';
 import '../node_modules/react-selectize/themes/default.css';
 ```
 
@@ -74,7 +77,7 @@ import ReactDOM from 'react-dom';
 import './selector.css'
 import '../node_modules/react-selectize/themes/default.css';
 
-import SourcesTagsSelector from './SourcesTagsSelector';
+import StatefulOptionsSelector from './StatefulOptionsSelector';
 
 const data = [
     { 
@@ -125,7 +128,7 @@ function handleChange(value) {
 }
 
 ReactDOM.render(
-    <SourcesTagsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color' />,
+    <StatefulOptionsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color' />,
     document.getElementById('root')
 );
 ```
@@ -133,7 +136,7 @@ ReactDOM.render(
 ## Configuration
 
 ```html
-<SourcesTagsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color tags' />
+<StatefulOptionsSelector data={data} handleChange={handleChange} value={value} placeholder='Select color tags' />
 ```
 
 ### ```data``` - mandatory
@@ -154,9 +157,10 @@ Callback function for value change, accepts a single parameter with the current 
 
 ```
 {
-  "AND": [item],
-  "OR": [item],
-  "NOT": [item]
+  <category1>: [item],
+  <category2>: [item],
+  ...
+  <categoryN>: [item]
 }
 ```
 
@@ -172,7 +176,7 @@ Example:
 }
 ```
 
-### ```placeholder``` - optional (default: 'Select sources and tags')
+### ```placeholder``` - optional (default: 'Select options')
 
 Placeholder in the selected options widget.
 
@@ -233,8 +237,8 @@ selector/
     MenuItem.test.js
     SelectedItem.js
     SelectedItem.test.js
-    SourcesTagsSelector.js
-    SourcesTagsSelector.test.js
+    StatefulOptionsSelector.js
+    StatefulOptionsSelector.test.js
     index.js
     selector.css
 ```
@@ -244,7 +248,7 @@ selector/
 * `node_modules/`: installed npm packages
 * `public/`: HTML and resources for demo
 * `index.js`: demo application 
-* `SourcesTagsSelector.js`: selector component
+* `StatefulOptionsSelector.js`: selector component
 * `selector.css`: selector styles
 * `Filter.js`: filter configuration for `source` and `tag` groups
 * `Logic.js`: logic state transition

@@ -5,7 +5,7 @@ import MenuItem from './MenuItem';
 import SelectedItem from './SelectedItem';
 import Filter from './Filter';
 
-class SourcesTagsSelector extends Component {
+class StatefulOptionsSelector extends Component {
     
     constructor(props) {
         super(props);
@@ -104,19 +104,19 @@ class SourcesTagsSelector extends Component {
         return (<MultiSelect
             ref={(input) => { this.multiSelectInstance = input; }} 
     
-            className = 'multiselect'
+            className='multiselect'
             
-            groups = {this.groups}
+            groups={this.groups}
             
             //open = {true}
 
             //groupsAsColumns = {true}
             
-            options = {this.options}
+            options={this.options}
             
-            values = {this.state.selectedItems}
+            values={this.state.selectedItems}
             
-            onValuesChange = {function(selectedItems) {
+            onValuesChange={function(selectedItems) {
                 
                 self.setState((prevState, props) => {
                     return { 
@@ -127,10 +127,10 @@ class SourcesTagsSelector extends Component {
                 });
             }}
  
-            closeOnSelect = {false}
+            closeOnSelect={false}
             
             // filterOptions :: [Item] -> [Item] -> String -> [Item]   
-            filterOptions = {function(options, values, search){              
+            filterOptions={function(options, values, search){              
                 return _.chain(options)
                     .reject(function(option){
                             return self.state.selectedItems.map(function(item){
@@ -145,26 +145,27 @@ class SourcesTagsSelector extends Component {
             }}
             
 
-            renderOption = {function(item){
-                const type =  self.groupId2Type[item.groupId];
-                return <div className = {['menu-option', type.toLowerCase()].join(' ')} >
+            renderOption={function(item){
+                const type = self.groupId2Type[item.groupId];
+                return <div className={['menu-option', type.toLowerCase()].join(' ')} >
                     <div className={type}>
                         <MenuItem item={item} />
                     </div>
                 </div>
             }}
             
-            renderValue = {function(item){
-                const type =  self.groupId2Type[item.groupId];
-                return <div className = "selected-option">
+            renderValue={function(item){
+                const type = self.groupId2Type[item.groupId];
+                return <div className="selected-option">
                     <div className={type}>
-                    <span className = "item"><SelectedItem item={item} handleLogicChange={self.handleLogicChange} /></span>
-                    <span className = "x" onClick = {function(){
+                    <span className="item"><SelectedItem item={item} handleLogicChange={self.handleLogicChange} /></span>
+                    <span className="x" onClick={function(){
                         
                         self.setState((prevState, props) => {
                             return { 
-                                selectedItems: _.reject(self.state.selectedItems,               function(option) {
-                                        return option.value == item.value;
+                                selectedItems: _.reject(self.state.selectedItems, 
+                                    function(option) {
+                                        return option.value === item.value;
                                     })
                             };
                         }, () => {
@@ -177,11 +178,11 @@ class SourcesTagsSelector extends Component {
                 </div>;
             }}
             
-            placeholder = { this.props.placeholder ? this.props.placeholder : "Select sources and tags" }
+            placeholder={ this.props.placeholder ? this.props.placeholder : "Select options" }
         />);
         
     }
     
 }
 
-export default SourcesTagsSelector;
+export default StatefulOptionsSelector;

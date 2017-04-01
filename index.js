@@ -1,1 +1,1 @@
-module.exports = require('./lib/SourcesTagsSelector');
+module.exports = require('./lib/StatefulOptionsSelector');

@@ -1,6 +1,6 @@
 {
-  "name": "sources-tags-selector",
-  "version": "0.1.9",
+  "name": "stateful-options-selector",
+  "version": "0.1.0",
   "private": false,
   "homepage": "https://norama.github.io/selector",
   "dependencies": {
