@@ -61,22 +61,11 @@
 }
 
 .selected-option .item {
-    cursor: pointer;
     padding: 2px;   
     font-weight: bold;
 }
 
-.logic-and {
-    color: darkred;
-    background-color: lightcoral;
+.selected-option .stateful {
+    cursor: pointer;    
 }
 
-.logic-or {
-    color: green;
-    background-color: lightgreen;
-}
-
-.logic-not {
-    color: dimgray;
-    background-color: lightgray;
-}

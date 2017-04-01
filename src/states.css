@@ -1,0 +1,14 @@
+.and {
+    color: darkred;
+    background-color: lightcoral;
+}
+
+.or {
+    color: green;
+    background-color: lightgreen;
+}
+
+.not {
+    color: dimgray;
+    background-color: lightgray;
+}

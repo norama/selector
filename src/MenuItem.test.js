@@ -5,32 +5,32 @@ import renderer from 'react-test-renderer';
 import MenuItem from './MenuItem';
 
 it('renders with label only', () => {
-    const item = {
+    const option = {
         label: 'label',
         value: 'value'
     };
     const div = document.createElement('div');
-    ReactDOM.render(<MenuItem item={item} />, div);
+    ReactDOM.render(<MenuItem option={option} />, div);
 });
     
 it('renders with label and icon', () => {
-    const item = {
+    const option = {
         label: 'label',
         value: 'value',
         icon: 'icon'
     };
     const div = document.createElement('div');
-    ReactDOM.render(<MenuItem item={item} />, div);
+    ReactDOM.render(<MenuItem option={option} />, div);
 });
     
 it('component DOM matches snapshot', () => {
-    const item = {
+    const option = {
         label: 'label',
         value: 'value',
         icon: 'icon'
     };
     const component = renderer.create(
-        <MenuItem item={item} />
+        <MenuItem option={option} />
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();

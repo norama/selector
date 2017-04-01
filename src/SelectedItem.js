@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Logic from './Logic';
+import _ from 'lodash';
+
 
 class SelectedItem extends Component {
     
@@ -9,20 +10,21 @@ class SelectedItem extends Component {
     }
     
     handleChange(e) {
-        this.props.handleLogicChange(this.props.item.value, Logic.next(this.props.item.logic));
+        this.props.handleOptionStateChange(this.props.option);
     }
     
-    className(logic) {
-        switch (logic) {
-            case 'OR': return 'logic-or';
-            case 'AND': return 'logic-and';
-            case 'NOT': return 'logic-not';
-            default: throw new RangeError('Unknown logic: ' + logic);
-        }
+    className() {
+        return _.camelCase(`${this.props.option.state.value}`);
     }
 
     render() {
-        return (<button className={['item',  this.className(this.props.item.logic)].join(' ')} onClick={this.handleChange} title={this.props.item.logic}>{this.props.item.label}</button>);
+        const stateless = (this.props.option.state.value === 'selected');
+        return (<button disabled={stateless} 
+                className={['item',  this.className(), stateless ? 'stateless' : 'stateful'].join(' ')} 
+                onClick={this.handleChange} 
+                title={this.props.option.state.label}>
+                    {this.props.option.label}
+                </button>);
     }
 }
 

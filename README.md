@@ -33,16 +33,16 @@ Options can also be divided into option groups, each group having an ID and a di
 Demo with sample configuration in [src/index.js](https://github.com/norama/selector/blob/master/src/index.js) can be seen [here](https://norama.github.io/selector).
 
 In this example each selected option has a logic state: `OR` (initial), `AND` or `NOT` and the value of the selector is a 
-JSON composed by the selected options and their assigned logic state:
+JSON composed by the selected options and their assigned states:
 ```
 {
-  "AND": [item],
-  "OR": [item],
-  "NOT": [item]
+  "AND": [option],
+  "OR": [option],
+  "NOT": [option]
 }
 ```
 
-As options are selected, they are removed from the menu and displayed among the selected items with corresponding logic state: 
+As options are selected, they are removed from the menu and displayed among the selected options with corresponding state: 
 * `OR` (green, initial state)
 * `AND` (red)
 * `NOT` (gray)
@@ -84,13 +84,28 @@ import '../node_modules/react-selectize/themes/default.css';
 
 import StatefulOptionsSelector from './StatefulOptionsSelector';
 
+const states = [
+    {
+        value: 'or',
+        label: 'OR'
+    },
+    {
+        value: 'and',
+        label: 'AND'
+    },
+    {
+        value: 'not',
+        label: 'NOT'
+    }
+];
+
 const data = [
     { 
         id: 'Sources',
         title: 'SOURCES',
         type: 'source',
 
-        items: [
+        options: [
             {
                 value: 'Aeronet.cz'
             },
@@ -105,7 +120,7 @@ const data = [
         title: 'COLORS',
         type: 'tag',
 
-        items: [
+        options: [
             {
                 label: 'Red',
                 value: 'red',
@@ -126,7 +141,7 @@ const data = [
     }
 ];
 
-const value = { AND: [ 'red', 'green' ], NOT: [ 'blue' ] };
+const value = { and: [ 'red', 'green' ], not: [ 'blue' ] };
 
 function handleChange(value) {
     console.log(JSON.stringify(value, undefined, 4));
@@ -135,6 +150,7 @@ function handleChange(value) {
 ReactDOM.render(
     <StatefulOptionsSelector 
         data={data} 
+        states={states}
         handleChange={handleChange} 
         value={value} 
         placeholder='Select color' 
@@ -148,6 +164,7 @@ ReactDOM.render(
 ```html
 <StatefulOptionsSelector 
     data={data} 
+    states={states}
     handleChange={handleChange} 
     value={value} 
     maxGroupOptionsCount={count}
@@ -159,13 +176,25 @@ ReactDOM.render(
 
 JSON of grouped options, each group has the following structure (attributes are mandatory unless declared optional):
 
-* **id**: unique identifier
+* **id**: unique group identifier
 * **title**: display title
 * **type**: `source` or `tag` 
-* **items**: list of elements:
+* **options**: list of elements:
   * **label**: displayed text (optional, default: value)
-  * **value**: identifier, also used in the item lists of component value 
+  * **value**: identifier, also used in the option lists of component value 
   * **icon**: link to icon image to be displayed in menu (optional, default: none)
+  
+### ```states``` - optional (default: {value: 'selected', label: 'selected'})
+
+List of states, selected options change their states according to this configuration.
+If omitted, options are considered stateless and a placeholder 'selected' state is used
+as key of selected options list in the component value.
+
+State attributes:
+
+* **label**: displayed text in tooltip (optional, default: value)
+* **value**: identifier, key in component value to group selected items of the same state 
+
   
 ### ```handleChange``` - optional (default: none)
 
@@ -173,10 +202,18 @@ Callback function for value change, accepts a single parameter with the current 
 
 ```
 {
-  <category1>: [item],
-  <category2>: [item],
+  <state1>: [option],
+  <state2>: [option],
   ...
-  <categoryN>: [item]
+  <stateN>: [option]
+}
+```
+
+in case of stateless options:
+
+```
+{
+  selected: [option]
 }
 ```
 
@@ -189,6 +226,14 @@ Example:
 { 
   "AND": [ 'red', 'green' ], 
   "NOT": [ 'blue' ] 
+}
+```
+
+in case of stateless options:
+
+```
+{
+  selected: [ 'red', 'green' ]
 }
 ```
 

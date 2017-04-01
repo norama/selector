@@ -4,13 +4,25 @@ import { mount, shallow, render } from 'enzyme';
 
 import StatefulOptionsSelector, { limitOptions } from './StatefulOptionsSelector';
 
+const states = [
+    {
+        value: 'OR',
+    },
+    {
+        value: 'AND',
+    },
+    {
+        value: 'NOT',
+    }
+];
+
 const data = [
     { 
         id: 'MainSources',
         title: 'SOURCES',
         type: 'source',
 
-        items: [
+        options: [
             {
                 value: 'Aeronet.cz'
             },
@@ -27,7 +39,7 @@ const data = [
         title: 'TAGS',
         type: 'tag',
 
-        items: [
+        options: [
             {
                 value: 'Troll'
             },
@@ -41,6 +53,8 @@ const data = [
     }
 ];
 
+const value0 = { selected: [ 'Aeronet.cz' ] };
+
 const value1 = { OR: [ 'Aeronet.cz' ] };
 
 const value2 = { OR: [ 'Aeronet.cz' ], AND: [ 'Troll' ] };
@@ -53,8 +67,22 @@ it('renders without data', () => {
     
 it('renders with data', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<StatefulOptionsSelector data={data} />, div);
+    ReactDOM.render(<StatefulOptionsSelector data={data} states={states} />, div);
 });
+    
+it('no states', () => {  
+    const handleChange = function(value) {
+        expect(value).toEqual({ selected: [ 'Aeronet.cz' ] }); 
+    };
+    
+    const component = mount(
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value0} />
+    );
+    
+    component.find('button.selected').first().simulate('click');
+    component.find('button.selected').first().simulate('click');
+    component.find('button.selected').first().simulate('click');  
+});   
     
 it('select 1 item', () => {
     const handleChange = function(value) {
@@ -62,11 +90,11 @@ it('select 1 item', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} states={states} />
     );
 });    
 
-it('select 1 item with logic change', () => {
+it('select 1 item with state change', () => {
     
     let counter = 0;
     const handleChange = function(value) {
@@ -79,14 +107,14 @@ it('select 1 item with logic change', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} states={states} />
     );
     
-    component.find('button.logic-or').first().simulate('click');
-    component.find('button.logic-and').first().simulate('click');
-    component.find('button.logic-not').first().simulate('click');
+    component.find('button.or').first().simulate('click');
+    component.find('button.and').first().simulate('click');
+    component.find('button.not').first().simulate('click');
     
-});    
+});   
     
 it('select 2 items', () => {
     const handleChange = function(value) {
@@ -94,7 +122,7 @@ it('select 2 items', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} states={states} />
     );
 });   
  
@@ -112,12 +140,12 @@ it('select 2 items with logic change', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} states={states} />
     );
     
-    component.find('div.source button.logic-or').first().simulate('click');
-    component.find('div.source button.logic-and').first().simulate('click');
-    component.find('div.source button.logic-not').first().simulate('click');
+    component.find('div.source button.or').first().simulate('click');
+    component.find('div.source button.and').first().simulate('click');
+    component.find('div.source button.not').first().simulate('click');
     
 });    
     
@@ -132,7 +160,7 @@ it('unselect item with x', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} states={states} />
     );
     component.find('span.x').first().simulate('click');
     
@@ -150,7 +178,7 @@ it('unselect all', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} />
+        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} states={states} />
     );
     component.find('svg.react-selectize-reset-button').first().simulate('click');
     

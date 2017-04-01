@@ -1,11 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './selector.css'
+import './states.css'
 import '../node_modules/react-selectize/themes/default.css';
 import $ from 'jquery';
 
 
 import StatefulOptionsSelector from './StatefulOptionsSelector';
+
+const states = [
+    {
+        value: 'or',
+        label: 'OR'
+    },
+    {
+        value: 'and',
+        label: 'AND'
+    },
+    {
+        value: 'not',
+        label: 'NOT'
+    }
+];
 
 const data1 = [
     { 
@@ -13,7 +29,7 @@ const data1 = [
         title: 'SOURCES',
         type: 'source',
 
-        items: [
+        options: [
             {
                 value: 'Aeronet.cz'
             },
@@ -41,7 +57,7 @@ const data1 = [
         title: 'TAGS',
         type: 'tag',
 
-        items: [
+        options: [
             {
                 value: 'CzechNews',
                 icon: 'img/blue.png'
@@ -65,7 +81,12 @@ function handleChange1(value) {
 }
 
 ReactDOM.render(
-    <StatefulOptionsSelector data={data1} handleChange={handleChange1} maxGroupOptionsCount={3} />,
+    <StatefulOptionsSelector 
+        data={data1} 
+        states={states} 
+        handleChange={handleChange1} 
+        maxGroupOptionsCount={3} 
+    />,
     document.getElementById('root1')
 );
 
@@ -74,7 +95,7 @@ const data2 = [
         id: 'Colors',
         type: 'tag',
 
-        items: [
+        options: [
             {
                 label: 'Red',
                 value: 'red',
@@ -95,7 +116,7 @@ const data2 = [
     }
 ];
 
-const value2 = { AND: [ 'red' ], NOT: [ 'blue' ] };
+const value2 = { and: [ 'red' ], not: [ 'blue' ] };
 
 
 function handleChange2(value) {
@@ -103,6 +124,12 @@ function handleChange2(value) {
 }
 
 ReactDOM.render(
-    <StatefulOptionsSelector data={data2} handleChange={handleChange2} value={value2} placeholder='Select color tags' />,
+    <StatefulOptionsSelector 
+        data={data2} 
+        states={states} 
+        handleChange={handleChange2} 
+        value={value2} 
+        placeholder='Select color tags' 
+    />,
     document.getElementById('root2')
 );

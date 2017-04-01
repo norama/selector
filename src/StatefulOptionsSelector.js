@@ -4,22 +4,28 @@ import _ from 'underscore';
 import MenuItem from './MenuItem';
 import SelectedItem from './SelectedItem';
 import Filter from './Filter';
+import OptionStates from './OptionStates';
 
 class StatefulOptionsSelector extends Component {
     
     constructor(props) {
         super(props);
-        this.handleLogicChange = this.handleLogicChange.bind(this);
-        this.state = {selectedItems: []};
+        this.handleOptionStateChange = this.handleOptionStateChange.bind(this);
+        this.state = {selectedOptions: []};
         this.init();
     }
     
     init() {
         
+        const self = this;
+        
         let data = this.props.data ? this.props.data : [];
+        
+        this.optionStates = new OptionStates(this.props.states);
+        
         if (this.props.maxGroupOptionsCount) {
             data = data.map(function(group) {
-                group.items.push(limitSignOption(group.id));
+                group.options.push(limitSignOption(group.id));
                 return group;
             });
         }
@@ -32,14 +38,14 @@ class StatefulOptionsSelector extends Component {
         });
         
         this.options = [].concat.apply([], data.map(function(group) {
-            return group.items.map(function(item) {
+            return group.options.map(function(option) {
                 return {
                     groupId: group.id,
-                    label: item.label ? item.label : item.value,
-                    value: item.value,
-                    icon: item.icon,
-                    selectable: item.selectable,
-                    logic: 'OR'
+                    label: option.label ? option.label : option.value,
+                    value: option.value,
+                    icon: option.icon,
+                    selectable: option.selectable,
+                    state: self.optionStates.first()
                 }
             });
         }));
@@ -52,39 +58,40 @@ class StatefulOptionsSelector extends Component {
     
     componentDidMount() {        
         this.setState({
-            selectedItems: this.value2items()
+            selectedOptions: this.value2options()
         }, () => {
             this.propagateValue();  
         });
     }
     
-    value2items() {
-        let items = [];
+    value2options() {
+        let options = [];
         if (this.props.value) {
-            for (let logic in this.props.value) {
-                for (let itemValue of this.props.value[logic]) {
-                    let item = this.options.find(function(option) { 
-                        return option.value === itemValue; 
+            for (let optionStateValue in this.props.value) {
+                for (let optionValue of this.props.value[optionStateValue]) {
+                    let option = this.options.find(function(option) { 
+                        return option.value === optionValue; 
                     });
-                    item = JSON.parse(JSON.stringify(item)); // clone
-                    item.logic = logic;
-                    items.push(item);
+                    option = JSON.parse(JSON.stringify(option)); // clone
+                    option.state = this.optionStates.state(optionStateValue);
+                    options.push(option);
                 }
             }
         }
-        return items;
+        return options;
     }
     
-    handleLogicChange(value, logic) {
+    handleOptionStateChange(option) {
+        const self = this;
         this.setState((prevState, props) => {
-            let selectedItems = prevState.selectedItems.map(function(selectedItem) {
-                if (selectedItem.value === value) {
-                    selectedItem.logic = logic;
+            let selectedOptions = prevState.selectedOptions.map(function(selectedOption) {
+                if (selectedOption.value === option.value) {
+                    selectedOption.state = self.optionStates.next(option.state);
                 }
-                return selectedItem;
+                return selectedOption;
             });
             return {
-                selectedItems: selectedItems,
+                selectedOptions: selectedOptions,
             };
         }, () => {
             this.multiSelectInstance.focus();
@@ -99,10 +106,17 @@ class StatefulOptionsSelector extends Component {
     }
     
     result() {
-        return this.state.selectedItems.reduce(function(map, selectedItem) {
-            map[selectedItem.logic].push(selectedItem.value);
+        return this.state.selectedOptions.reduce(function(map, selectedOption) {
+            map[selectedOption.state.value].push(selectedOption.value);
             return map;
-        }, {AND: [], OR: [], NOT: []});
+        }, this.emptyValue());
+    }
+    
+    emptyValue() {
+        return this.optionStates.values().reduce((map, stateValue) => {
+            map[stateValue] = [];
+            return map;
+        }, {})
     }
 
     render() {
@@ -121,14 +135,12 @@ class StatefulOptionsSelector extends Component {
             
             options={this.options}
             
-            values={this.state.selectedItems}
+            values={this.state.selectedOptions}
             
-            onValuesChange={function(selectedItems) {
+            onValuesChange={function(selectedOptions) {
                 
-                self.setState((prevState, props) => {
-                    return { 
-                        selectedItems: selectedItems
-                    };
+                self.setState({ 
+                    selectedOptions: selectedOptions
                 }, () => {
                     self.propagateValue();                    
                 });
@@ -137,11 +149,11 @@ class StatefulOptionsSelector extends Component {
             closeOnSelect={false}
             
             // filterOptions :: [Item] -> [Item] -> String -> [Item]   
-            filterOptions={function(options, values, search){              
+            filterOptions={function(options, values, search) {              
                 let filteredOptions = _.chain(options)
                     .reject(function(option){
-                            return self.state.selectedItems.map(function(item){
-                                return item.value
+                            return self.state.selectedOptions.map(function(selectedOption){
+                                return selectedOption.value
                             }).indexOf(option.value) > -1 || 
                                 isLimitSignOption(option);
                         })
@@ -154,28 +166,28 @@ class StatefulOptionsSelector extends Component {
             }}
             
 
-            renderOption={function(item){
-                const type = self.groupId2Type[item.groupId];
-                const optionClassName = isLimitSignOption(item) ? 'limit-sign' : 'selectable';
+            renderOption={function(option){
+                const type = self.groupId2Type[option.groupId];
+                const optionClassName = isLimitSignOption(option) ? 'limit-sign' : 'selectable';
                 return <div className={['menu-option', type.toLowerCase(), optionClassName].join(' ')} >
                     <div className={[type.toLowerCase(), optionClassName].join(' ')}>
-                        <MenuItem item={item} />
+                        <MenuItem option={option} />
                     </div>
                 </div>
             }}
             
-            renderValue={function(item){
-                const type = self.groupId2Type[item.groupId];
+            renderValue={function(option){
+                const type = self.groupId2Type[option.groupId];
                 return <div className="selected-option">
                     <div className={type}>
-                    <span className="item"><SelectedItem item={item} handleLogicChange={self.handleLogicChange} /></span>
+                    <span><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></span>
                     <span className="x" onClick={function(){
                         
                         self.setState((prevState, props) => {
                             return { 
-                                selectedItems: _.reject(self.state.selectedItems, 
-                                    function(option) {
-                                        return option.value === item.value;
+                                selectedOptions: _.reject(self.state.selectedOptions, 
+                                    function(selectedOption) {
+                                        return option.value === selectedOption.value;
                                     })
                             };
                         }, () => {
