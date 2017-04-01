@@ -72,7 +72,6 @@ ReactDOM.render(
 const data2 = [
     { 
         id: 'Colors',
-        title: 'COLOR TAGS',
         type: 'tag',
 
         items: [
