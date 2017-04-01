@@ -56,6 +56,11 @@ Options are added to `source` or `tag` groups:
 ```
 npm install stateful-options-selector --save
 ```
+Import component:
+
+```
+import StatefulOptionsSelector from 'stateful-options-selector';
+```
 
 Import styles:
 
@@ -74,7 +79,7 @@ import '../node_modules/react-selectize/themes/default.css';
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './selector.css'
+import '../node_modules/stateful-options-selector/lib/selector.css'
 import '../node_modules/react-selectize/themes/default.css';
 
 import StatefulOptionsSelector from './StatefulOptionsSelector';
