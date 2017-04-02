@@ -7,36 +7,40 @@ import Filter from './Filter';
 import OptionStates from './OptionStates';
 
 class StatefulOptionsSelector extends Component {
-    
+
     constructor(props) {
         super(props);
         this.handleOptionStateChange = this.handleOptionStateChange.bind(this);
         this.state = {selectedOptions: []};
         this.init();
     }
-    
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    }
+
     init() {
-        
+
         const self = this;
-        
+
         let data = this.props.groups ? this.props.groups : [];
-        
+
         this.optionStates = new OptionStates(this.props.states);
-        
+
         if (this.props.maxGroupOptionsCount) {
             data = data.map(function(group) {
                 group.options.push(limitSignOption(group.id));
                 return group;
             });
         }
-        
+
         this.groups = data.map(function(group) {
             return {
                 groupId: group.id,
                 title: group.title
             }
         });
-        
+
         this.options = [].concat.apply([], data.map(function(group) {
             return group.options.map(function(option) {
                 return {
@@ -49,28 +53,28 @@ class StatefulOptionsSelector extends Component {
                 }
             });
         }));
-        
+
         this.groupId2Type = data.reduce(function(map, group) {
             map[group.id] = group.type;
             return map;
         }, {});
     }
-    
-    componentDidMount() {        
+
+    componentDidMount() {
         this.setState({
             selectedOptions: this.value2options()
         }, () => {
-            this.propagateValue();  
+            this.propagateValue();
         });
     }
-    
+
     value2options() {
         let options = [];
         if (this.props.value) {
             for (let optionStateValue in this.props.value) {
                 for (let optionValue of this.props.value[optionStateValue]) {
-                    let option = this.options.find(function(option) { 
-                        return option.value === optionValue; 
+                    let option = this.options.find(function(option) {
+                        return option.value === optionValue;
                     });
                     option = JSON.parse(JSON.stringify(option)); // clone
                     option.state = this.optionStates.state(optionStateValue);
@@ -80,7 +84,7 @@ class StatefulOptionsSelector extends Component {
         }
         return options;
     }
-    
+
     handleOptionStateChange(option) {
         const self = this;
         this.setState((prevState, props) => {
@@ -95,23 +99,23 @@ class StatefulOptionsSelector extends Component {
             };
         }, () => {
             this.multiSelectInstance.focus();
-            this.propagateValue();  
+            this.propagateValue();
         });
     }
-    
+
     propagateValue() {
         if (this.props.handleChange) {
-            this.props.handleChange(this.result());            
+            this.props.handleChange(this.result());
         }
     }
-    
+
     result() {
         return this.state.selectedOptions.reduce(function(map, selectedOption) {
             map[selectedOption.state.value].push(selectedOption.value);
             return map;
         }, this.emptyValue());
     }
-    
+
     emptyValue() {
         return this.optionStates.values().reduce((map, stateValue) => {
             map[stateValue] = [];
@@ -121,40 +125,40 @@ class StatefulOptionsSelector extends Component {
 
     render() {
         const self = this;
-  
+
         return (<MultiSelect
-            ref={(input) => { this.multiSelectInstance = input; }} 
-    
+            ref={(input) => { this.multiSelectInstance = input; }}
+
             className='multiselect'
-            
+
             groups={this.groups}
-            
+
             //open = {true}
 
             //groupsAsColumns = {true}
-            
+
             options={this.options}
-            
+
             values={this.state.selectedOptions}
-            
+
             onValuesChange={function(selectedOptions) {
-                
-                self.setState({ 
+
+                self.setState({
                     selectedOptions: selectedOptions
                 }, () => {
-                    self.propagateValue();                    
+                    self.propagateValue();
                 });
             }}
- 
+
             closeOnSelect={false}
-            
-            // filterOptions :: [Item] -> [Item] -> String -> [Item]   
-            filterOptions={function(options, values, search) {              
+
+            // filterOptions :: [Item] -> [Item] -> String -> [Item]
+            filterOptions={function(options, values, search) {
                 let filteredOptions = _.chain(options)
                     .reject(function(option){
                             return self.state.selectedOptions.map(function(selectedOption){
                                 return selectedOption.value
-                            }).indexOf(option.value) > -1 || 
+                            }).indexOf(option.value) > -1 ||
                                 isLimitSignOption(option);
                         })
                     .filter(function(option) {
@@ -164,7 +168,7 @@ class StatefulOptionsSelector extends Component {
                     .value();
                 return limitOptions(filteredOptions, self.props.maxGroupOptionsCount);
             }}
-            
+
 
             renderOption={function(option){
                 const optionClassName = isLimitSignOption(option) ? 'limit-sign' : 'selectable';
@@ -174,16 +178,16 @@ class StatefulOptionsSelector extends Component {
                         </div>
                     </div>);
             }}
-            
+
             renderValue={function(option){
                 return (<div className="selected-option">
                     <div className={option.groupId}>
                     <table><tbody><tr><td><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></td>
                     <td className="x" onClick={function(){
-                        
+
                         self.setState((prevState, props) => {
-                            return { 
-                                selectedOptions: _.reject(self.state.selectedOptions, 
+                            return {
+                                selectedOptions: _.reject(self.state.selectedOptions,
                                     function(selectedOption) {
                                         return option.value === selectedOption.value;
                                     })
@@ -192,21 +196,21 @@ class StatefulOptionsSelector extends Component {
                             self.multiSelectInstance.focus();
                             self.propagateValue();
                         } );
-                        
+
                     }}>x</td></tr></tbody></table>
                 </div>
                 </div>);
             }}
-            
+
             placeholder={ this.props.placeholder ? this.props.placeholder : "Select options" }
 
             renderNoResultsFound={function() {
                 return (<div className='no-results-found'>{self.props.noResultsFound ? self.props.noResultsFound : 'No results found'}</div>);
             }}
         />);
-        
+
     }
-    
+
 }
 
 export function limitOptions(options, maxGroupOptionsCount) {
@@ -222,7 +226,7 @@ export function limitOptions(options, maxGroupOptionsCount) {
         });
         options = _.flatten(_.values(groupId2options));
     }
-    
+
     return options;
 }
 
