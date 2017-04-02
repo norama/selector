@@ -5,8 +5,15 @@
 
 .simple-group-title {
     background-color: lightyellow !important;
+    color: darkgray;
     font-family: monospace;
-    font-size: xx-large;
+    font-size: x-large;
+}
+
+.options {
+    border-bottom: 1px solid #8c8b8b;
+    margin: 0px 10px 10px 10px;
+    padding-bottom: 20px;
 }
 
 .multiselect {
