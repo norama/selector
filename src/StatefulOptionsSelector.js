@@ -12,22 +12,18 @@ class StatefulOptionsSelector extends Component {
         super(props);
         this.handleOptionStateChange = this.handleOptionStateChange.bind(this);
         this.state = {selectedOptions: []};
-        this.init();
+        this.init(props);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return true;
-    }
-
-    init() {
+    init(props) {
 
         const self = this;
 
-        let data = this.props.groups ? this.props.groups : [];
+        let data = props.groups ? props.groups : [];
 
-        this.optionStates = new OptionStates(this.props.states);
+        this.optionStates = new OptionStates(props.states);
 
-        if (this.props.maxGroupOptionsCount) {
+        if (props.maxGroupOptionsCount) {
             data = data.map(function(group) {
                 group.options.push(limitSignOption(group.id));
                 return group;
@@ -58,6 +54,10 @@ class StatefulOptionsSelector extends Component {
             map[group.id] = group.type;
             return map;
         }, {});
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.init(nextProps);
     }
 
     componentDidMount() {
