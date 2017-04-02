@@ -56,12 +56,13 @@
 
 .selected-option .x {
     cursor: pointer;
-    padding: 2px;   
+    vertical-align: top;
     color: #707070;
 }
 
 .selected-option .item {
     padding: 2px;   
+    margin-right: 2px;
     font-weight: bold;
 }
 
@@ -69,3 +70,10 @@
     cursor: pointer;    
 }
 
+.selected-option .stateless {
+    cursor: default;    
+}
+
+.selected-option td {
+    padding: 0px !important;   
+}

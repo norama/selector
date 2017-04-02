@@ -180,8 +180,8 @@ class StatefulOptionsSelector extends Component {
                 const type = self.groupId2Type[option.groupId];
                 return <div className="selected-option">
                     <div className={type}>
-                    <span><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></span>
-                    <span className="x" onClick={function(){
+                    <table><tr><td><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></td>
+                    <td className="x" onClick={function(){
                         
                         self.setState((prevState, props) => {
                             return { 
@@ -195,8 +195,8 @@ class StatefulOptionsSelector extends Component {
                             self.propagateValue();
                         } );
                         
-                    }}>x</span>
-                    </div>
+                    }}>x</td></tr></table>
+                </div>
                 </div>;
             }}
             

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-
+import MenuItem from './MenuItem';
 
 class SelectedItem extends Component {
     
@@ -19,12 +19,14 @@ class SelectedItem extends Component {
 
     render() {
         const stateless = (this.props.option.state.value === 'selected');
-        return (<button disabled={stateless} 
+        return (<div disabled={stateless} 
                 className={['item',  this.className(), stateless ? 'stateless' : 'stateful'].join(' ')} 
                 onClick={this.handleChange} 
                 title={this.props.option.state.label}>
-                    {this.props.option.label}
-                </button>);
+                 
+                    <MenuItem option={this.props.option} />
+                    
+                </div>);
     }
 }
 
