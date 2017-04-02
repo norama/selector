@@ -16,7 +16,7 @@ const states = [
     }
 ];
 
-const data = [
+const groups = [
     { 
         id: 'MainSources',
         title: 'SOURCES',
@@ -67,7 +67,7 @@ it('renders without data', () => {
     
 it('renders with data', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<StatefulOptionsSelector data={data} states={states} />, div);
+    ReactDOM.render(<StatefulOptionsSelector groups={groups} states={states} />, div);
 });
     
 it('no states', () => {  
@@ -76,7 +76,7 @@ it('no states', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value0} />
+        <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value0} />
     );
     
     component.find('button.selected').first().simulate('click');
@@ -90,7 +90,7 @@ it('select 1 item', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} states={states} />
+        <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
 });    
 
@@ -107,7 +107,7 @@ it('select 1 item with state change', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} states={states} />
+        <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
     
     component.find('button.or').first().simulate('click');
@@ -122,7 +122,7 @@ it('select 2 items', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} states={states} />
+        <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value2} states={states} />
     );
 });   
  
@@ -140,7 +140,7 @@ it('select 2 items with logic change', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} states={states} />
+        <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value2} states={states} />
     );
     
     component.find('div.source button.or').first().simulate('click');
@@ -160,7 +160,7 @@ it('unselect item with x', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value1} states={states} />
+        <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
     component.find('span.x').first().simulate('click');
     
@@ -178,7 +178,7 @@ it('unselect all', () => {
     };
     
     const component = mount(
-        <StatefulOptionsSelector data={data} handleChange={handleChange} value={value2} states={states} />
+        <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value2} states={states} />
     );
     component.find('svg.react-selectize-reset-button').first().simulate('click');
     

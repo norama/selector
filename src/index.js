@@ -23,7 +23,7 @@ const states = [
     }
 ];
 
-const data1 = [
+const groups1 = [
     { 
         id: 'MainSources',
         title: 'SOURCES',
@@ -82,7 +82,7 @@ function handleChange1(value) {
 
 ReactDOM.render(
     <StatefulOptionsSelector 
-        data={data1} 
+        groups={groups1} 
         states={states} 
         handleChange={handleChange1} 
         maxGroupOptionsCount={3} 
@@ -90,7 +90,7 @@ ReactDOM.render(
     document.getElementById('root1')
 );
 
-const data2 = [
+const groups2 = [
     { 
         id: 'Colors',
         type: 'tag',
@@ -125,7 +125,7 @@ function handleChange2(value) {
 
 ReactDOM.render(
     <StatefulOptionsSelector 
-        data={data2} 
+        groups={groups2} 
         states={states} 
         handleChange={handleChange2} 
         value={value2} 

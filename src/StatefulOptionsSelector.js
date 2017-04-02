@@ -19,7 +19,7 @@ class StatefulOptionsSelector extends Component {
         
         const self = this;
         
-        let data = this.props.data ? this.props.data : [];
+        let data = this.props.groups ? this.props.groups : [];
         
         this.optionStates = new OptionStates(this.props.states);
         

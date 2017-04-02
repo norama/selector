@@ -66,6 +66,7 @@ Import styles:
 
 ```
 import '../node_modules/stateful-options-selector/lib/selector.css';
+import '../node_modules/stateful-options-selector/lib/states.css'
 import '../node_modules/react-selectize/themes/default.css';
 ```
 
@@ -80,6 +81,7 @@ import '../node_modules/react-selectize/themes/default.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../node_modules/stateful-options-selector/lib/selector.css'
+import '../node_modules/stateful-options-selector/lib/states.css'
 import '../node_modules/react-selectize/themes/default.css';
 
 import StatefulOptionsSelector from './StatefulOptionsSelector';
@@ -99,7 +101,7 @@ const states = [
     }
 ];
 
-const data = [
+const groups = [
     { 
         id: 'Sources',
         title: 'SOURCES',
@@ -149,7 +151,7 @@ function handleChange(value) {
 
 ReactDOM.render(
     <StatefulOptionsSelector 
-        data={data} 
+        groups={groups} 
         states={states}
         handleChange={handleChange} 
         value={value} 
@@ -163,7 +165,7 @@ ReactDOM.render(
 
 ```html
 <StatefulOptionsSelector 
-    data={data} 
+    groups={groups} 
     states={states}
     handleChange={handleChange} 
     value={value} 
@@ -172,12 +174,12 @@ ReactDOM.render(
 />
 ```
 
-### ```data``` - mandatory
+### ```groups``` - mandatory
 
 JSON of grouped options, each group has the following structure (attributes are mandatory unless declared optional):
 
 * **id**: unique group identifier
-* **title**: display title
+* **title**: display title (optional, default: none)
 * **type**: `source` or `tag` 
 * **options**: list of elements:
   * **label**: displayed text (optional, default: value)
