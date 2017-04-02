@@ -20,7 +20,7 @@ class SelectedItem extends Component {
     render() {
         const stateless = (this.props.option.state.value === 'selected');
         return (<div disabled={stateless} 
-                className={['item',  this.className(), stateless ? 'stateless' : 'stateful'].join(' ')} 
+                className={['item',  this.className(), stateless ? 'stateless' : 'stateful', 'selected'].join(' ')} 
                 onClick={this.handleChange} 
                 title={this.props.option.state.label}>
                  

@@ -1,10 +1,16 @@
 exports[`test component DOM matches snapshot 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "margin": "4px 4px 0px 4px",
+    }
+  }>
   <div
     style={
       Object {
-        "float": "left",
+        "display": "inline",
         "marginRight": "5px",
+        "paddingTop": "5px",
       }
     }>
     <img
@@ -13,8 +19,13 @@ exports[`test component DOM matches snapshot 1`] = `
       src="icon"
       width="16" />
   </div>
-   
-  <div>
+  <div
+    style={
+      Object {
+        "display": "inline",
+        "verticalAlign": "top",
+      }
+    }>
     label
   </div>
 </div>

@@ -79,9 +79,9 @@ it('no states', () => {
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value0} />
     );
     
-    component.find('button.selected').first().simulate('click');
-    component.find('button.selected').first().simulate('click');
-    component.find('button.selected').first().simulate('click');  
+    component.find('div.item.stateless').first().simulate('click');
+    component.find('div.item.stateless').first().simulate('click');
+    component.find('div.item.stateless').first().simulate('click');  
 });   
     
 it('select 1 item', () => {
@@ -110,9 +110,9 @@ it('select 1 item with state change', () => {
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
     
-    component.find('button.or').first().simulate('click');
-    component.find('button.and').first().simulate('click');
-    component.find('button.not').first().simulate('click');
+    component.find('.selected.or').first().simulate('click');
+    component.find('.selected.and').first().simulate('click');
+    component.find('.selected.not').first().simulate('click');
     
 });   
     
@@ -126,7 +126,7 @@ it('select 2 items', () => {
     );
 });   
  
-it('select 2 items with logic change', () => {
+it('select 2 items with state change', () => {
     
     let counter = 0;
     const handleChange = function(value) {
@@ -143,9 +143,9 @@ it('select 2 items with logic change', () => {
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value2} states={states} />
     );
     
-    component.find('div.source button.or').first().simulate('click');
-    component.find('div.source button.and').first().simulate('click');
-    component.find('div.source button.not').first().simulate('click');
+    component.find('div.selected.stateful.or').first().simulate('click');
+    component.find('div.selected.stateful.and').first().simulate('click');
+    component.find('div.selected.stateful.not').first().simulate('click');
     
 });    
     
@@ -162,7 +162,7 @@ it('unselect item with x', () => {
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
-    component.find('span.x').first().simulate('click');
+    component.find('td.x').first().simulate('click');
     
 });
     

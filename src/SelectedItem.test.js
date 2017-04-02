@@ -24,7 +24,7 @@ it('renders with label and icon', () => {
     ReactDOM.render(<SelectedItem option={option} />, div);
 });
     
-it('handleLogicChange single', () => {
+it('handleStateChange', () => {
     const option = {
         label: 'label',
         value: 'value',
@@ -37,5 +37,5 @@ it('handleLogicChange single', () => {
     const component = shallow(
         <SelectedItem option={option} handleOptionStateChange={handleOptionStateChange} />
     );
-    component.find('button').simulate('click');
+    component.find('div.item').simulate('click');
 });
