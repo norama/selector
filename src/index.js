@@ -25,7 +25,7 @@ const states = [
 
 const groups1 = [
     { 
-        id: 'MainSources',
+        id: 'source',
         title: 'SOURCES',
         type: 'source',
 
@@ -53,9 +53,9 @@ const groups1 = [
     },
     
     { 
-        id: 'MainTags',
+        id: 'tag',
         title: 'TAGS',
-        type: 'tag',
+        type: 'source',
 
         options: [
             {
@@ -92,7 +92,7 @@ ReactDOM.render(
 
 const groups2 = [
     { 
-        id: 'Colors',
+        id: 'tag',
         type: 'tag',
 
         options: [
@@ -130,6 +130,7 @@ ReactDOM.render(
         handleChange={handleChange2} 
         value={value2} 
         placeholder='Select color tags' 
+        noResultsFound='NO RESULTS!'
     />,
     document.getElementById('root2')
 );
