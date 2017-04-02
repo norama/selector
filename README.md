@@ -156,6 +156,7 @@ ReactDOM.render(
         handleChange={handleChange} 
         value={value} 
         placeholder='Select color' 
+        noResultsFound='No results'
     />,
     document.getElementById('root')
 );
@@ -171,6 +172,7 @@ ReactDOM.render(
     value={value} 
     maxGroupOptionsCount={count}
     placeholder='Select color tags' 
+    noResultsFound='No results'
 />
 ```
 
@@ -242,6 +244,10 @@ in case of stateless options:
 ### ```placeholder``` - optional (default: 'Select options')
 
 Placeholder in the selected options widget.
+
+### ```noResultsFound``` - optional (default: 'No results found')
+
+Text shown in menu when no results found.
 
 ## Available Scripts
 

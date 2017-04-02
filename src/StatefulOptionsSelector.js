@@ -199,6 +199,10 @@ class StatefulOptionsSelector extends Component {
             }}
             
             placeholder={ this.props.placeholder ? this.props.placeholder : "Select options" }
+
+            renderNoResultsFound={function() {
+                return (<div className='no-results-found'>{self.props.noResultsFound ? self.props.noResultsFound : 'No results found'}</div>);
+            }}
         />);
         
     }

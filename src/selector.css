@@ -77,3 +77,9 @@
 .selected-option td {
     padding: 0px !important;   
 }
+
+.no-results-found {
+    color: darkgray;
+    font-style: italic;
+    font-weight: bold;
+}
