@@ -167,20 +167,18 @@ class StatefulOptionsSelector extends Component {
             
 
             renderOption={function(option){
-                const type = self.groupId2Type[option.groupId];
                 const optionClassName = isLimitSignOption(option) ? 'limit-sign' : 'selectable';
-                return <div className={['menu-option', type.toLowerCase(), optionClassName].join(' ')} >
-                    <div className={[type.toLowerCase(), optionClassName].join(' ')}>
+                return (<div className='menu-option' >
+                        <div className={[option.groupId, optionClassName].join(' ')}>
                         <MenuItem option={option} />
-                    </div>
-                </div>
+                        </div>
+                    </div>);
             }}
             
             renderValue={function(option){
-                const type = self.groupId2Type[option.groupId];
-                return <div className="selected-option">
-                    <div className={type}>
-                    <table><tr><td><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></td>
+                return (<div className="selected-option">
+                    <div className={option.groupId}>
+                    <table><tbody><tr><td><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></td>
                     <td className="x" onClick={function(){
                         
                         self.setState((prevState, props) => {
@@ -195,9 +193,9 @@ class StatefulOptionsSelector extends Component {
                             self.propagateValue();
                         } );
                         
-                    }}>x</td></tr></table>
+                    }}>x</td></tr></tbody></table>
                 </div>
-                </div>;
+                </div>);
             }}
             
             placeholder={ this.props.placeholder ? this.props.placeholder : "Select options" }
