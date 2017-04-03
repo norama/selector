@@ -1,5 +1,5 @@
 const Filter = {
-    'text': textFilter,
+    'full-text-search': textFilter,
     'none': allFilter
 }
 
