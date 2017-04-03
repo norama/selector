@@ -115,7 +115,7 @@ const groups2 = [
     }
 ];
 
-const value2 = { and: [ 'red' ], not: [ 'blue' ] };
+const value2 = { tags: { and: [ 'red' ], not: [ 'blue' ] } };
 
 
 function handleChange2(value) {

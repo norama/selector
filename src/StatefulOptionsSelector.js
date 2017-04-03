@@ -86,14 +86,16 @@ class StatefulOptionsSelector extends Component {
     value2options() {
         let options = [];
         if (this.props.value) {
-            for (let optionStateValue in this.props.value) {
-                for (let optionValue of this.props.value[optionStateValue]) {
-                    let option = this.options.find(function(option) {
-                        return option.value === optionValue;
-                    });
-                    option = JSON.parse(JSON.stringify(option)); // clone
-                    option.state = this.optionStates.state(optionStateValue);
-                    options.push(option);
+            for (let groupId in this.props.value) {
+                for (let optionStateValue in this.props.value[groupId]) {
+                    for (let optionValue of this.props.value[groupId][optionStateValue]) {
+                        let option = this.options.find(function(option) {
+                            return option.value === optionValue && option.groupId === groupId;
+                        });
+                        option = JSON.parse(JSON.stringify(option)); // clone
+                        option.state = this.optionStates.state(optionStateValue);
+                        options.push(option);
+                    }
                 }
             }
         }
@@ -125,13 +127,21 @@ class StatefulOptionsSelector extends Component {
     }
 
     result() {
+        console.dir(this.state.selectedOptions);
         return this.state.selectedOptions.reduce(function(map, selectedOption) {
-            map[selectedOption.state.value].push(selectedOption.value);
+            map[selectedOption.groupId][selectedOption.state.value].push(selectedOption.value);
             return map;
         }, this.emptyValue());
     }
-
+    
     emptyValue() {
+        return this.groups.reduce((map, group) => {
+            map[group.groupId] = this.emptyStateValue();
+            return map;
+        }, {});
+    }
+
+    emptyStateValue() {
         return this.optionStates.values().reduce((map, stateValue) => {
             map[stateValue] = [];
             return map;

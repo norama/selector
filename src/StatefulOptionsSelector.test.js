@@ -18,7 +18,7 @@ const states = [
 
 const groups = [
     { 
-        id: 'MainSources',
+        id: 'Sources',
         title: 'SOURCES',
         
         options: [
@@ -34,7 +34,7 @@ const groups = [
     },
     
     { 
-        id: 'MainTags',
+        id: 'Tags',
         title: 'TAGS',
 
         options: [
@@ -51,11 +51,11 @@ const groups = [
     }
 ];
 
-const value0 = { selected: [ 'Aeronet.cz' ] };
+const value0 = { Sources: { selected: [ 'Aeronet.cz' ] }};
 
-const value1 = { OR: [ 'Aeronet.cz' ] };
+const value1 = { Sources: { OR: [ 'Aeronet.cz' ] }};
 
-const value2 = { OR: [ 'Aeronet.cz' ], AND: [ 'Troll' ] };
+const value2 = { Sources: { OR: [ 'Aeronet.cz' ] }, Tags: { AND: [ 'Troll' ] }};
 
 
 it('renders without data', () => {
@@ -70,7 +70,7 @@ it('renders with data', () => {
     
 it('no states', () => {  
     const handleChange = function(value) {
-        expect(value).toEqual({ selected: [ 'Aeronet.cz' ] }); 
+        expect(value).toEqual({Sources: {selected: ["Aeronet.cz"]}, Tags: {selected: []}}); 
     };
     
     const component = mount(
@@ -84,7 +84,7 @@ it('no states', () => {
     
 it('select 1 item', () => {
     const handleChange = function(value) {
-        expect(value).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] });
+        expect(value.Sources).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] });
     };
     
     const component = mount(
@@ -97,9 +97,9 @@ it('select 1 item with state change', () => {
     let counter = 0;
     const handleChange = function(value) {
         switch (counter % 3) {
-            case 0: expect(value).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] }); break;
-            case 1: expect(value).toEqual({ AND: [ 'Aeronet.cz' ], OR: [], NOT: [] }); break;
-            case 2: expect(value).toEqual({ AND: [], OR: [], NOT: [ 'Aeronet.cz' ] }); break;  
+            case 0: expect(value.Sources).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] }); break;
+            case 1: expect(value.Sources).toEqual({ AND: [ 'Aeronet.cz' ], OR: [], NOT: [] }); break;
+            case 2: expect(value.Sources).toEqual({ AND: [], OR: [], NOT: [ 'Aeronet.cz' ] }); break;  
         };
         counter++;
     };
@@ -116,7 +116,7 @@ it('select 1 item with state change', () => {
     
 it('select 2 items', () => {
     const handleChange = function(value) {
-        expect(value).toEqual({ AND: [ 'Troll' ], OR: [ 'Aeronet.cz' ], NOT: [] });
+        expect(value).toEqual({ Sources: { AND: [], OR: [ 'Aeronet.cz' ], NOT: [] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }});
     };
     
     const component = mount(
@@ -128,11 +128,11 @@ it('select 2 items with state change', () => {
     
     let counter = 0;
     const handleChange = function(value) {
-        value.AND.sort();
+
         switch (counter % 3) {
-            case 0: expect(value).toEqual({ AND: [ 'Troll' ], OR: [ 'Aeronet.cz' ], NOT: [] }); break;
-            case 1: expect(value).toEqual({ AND: [ 'Aeronet.cz', 'Troll' ], OR: [], NOT: [] }); break;
-            case 2: expect(value).toEqual({ AND: [ 'Troll' ], OR: [], NOT: [ 'Aeronet.cz' ] }); break;  
+            case 0: expect(value).toEqual({ Sources: { AND: [], OR: ['Aeronet.cz'], NOT: [] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break;
+            case 1: expect(value).toEqual({ Sources: { AND: ['Aeronet.cz'], OR: [], NOT: [] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break;
+            case 2: expect(value).toEqual({ Sources: { AND: [], OR: [], NOT: ['Aeronet.cz'] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break; 
         };
         counter++;
     };
@@ -150,9 +150,9 @@ it('select 2 items with state change', () => {
 it('unselect item with x', () => {
     let counter = 0;
     const handleChange = function(value) {
-    switch (counter) {
-            case 0: expect(value).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] }); break;
-            case 1: expect(value).toEqual({ AND: [], OR: [], NOT: [] }); break;
+        switch (counter) {
+            case 0: expect(value.Sources).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] }); break;
+            case 1: expect(value.Sources).toEqual({ AND: [], OR: [], NOT: [] }); break;
         };
         counter++;
     };
@@ -169,8 +169,8 @@ it('unselect all', () => {
     let counter = 0;
     const handleChange = function(value) {
     switch (counter) {
-            case 0: expect(value).toEqual({ AND: [ 'Troll' ], OR: [ 'Aeronet.cz' ], NOT: [] }); break;
-            case 1: expect(value).toEqual({ AND: [], OR: [], NOT: [] }); break;
+            case 0: expect(value).toEqual({ Sources: { AND: [], OR: ['Aeronet.cz'], NOT: [] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break;
+            case 1: expect(value).toEqual({ Sources: { AND: [], OR: [], NOT: [] }, Tags: { AND: [], OR: [], NOT: [] }}); break;
         };
         counter++;
     };

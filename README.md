@@ -146,7 +146,7 @@ const groups = [
     }
 ];
 
-const value = { and: [ 'red', 'green' ], not: [ 'blue' ] };
+const value = { tags: {and: [ 'red', 'green' ], not: [ 'blue' ] }};
 
 function handleChange(value) {
     console.log(JSON.stringify(value, undefined, 4));
@@ -210,10 +210,25 @@ Callback function for value change, accepts a single parameter with the current 
 
 ```
 {
-  <state1>: [option],
-  <state2>: [option],
+  group1: {
+    <state1>: [option],
+    <state2>: [option],
+    ...
+    <stateN>: [option]
+  },
+  group1: {
+    <state1>: [option],
+    <state2>: [option],
+    ...
+    <stateN>: [option]
+  },
   ...
-  <stateN>: [option]
+  groupK: {
+    <state1>: [option],
+    <state2>: [option],
+    ...
+    <stateN>: [option]
+  }
 }
 ```
 
@@ -221,7 +236,16 @@ in case of stateless options:
 
 ```
 {
-  selected: [option]
+  group1: {
+    selected: [option]
+  },
+  group2: {
+    selected: [option]
+  },
+  ...
+  groupK: {
+    selected: [option]
+  }
 }
 ```
 
