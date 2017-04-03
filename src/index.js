@@ -25,9 +25,9 @@ const states = [
 
 const groups1 = [
     { 
-        id: 'source',
+        id: 'sources',
         title: 'SOURCES',
-        type: 'source',
+        count: 3,
 
         options: [
             {
@@ -53,9 +53,9 @@ const groups1 = [
     },
     
     { 
-        id: 'tag',
+        id: 'tags',
         title: 'TAGS',
-        type: 'source',
+        style: 'source',
 
         options: [
             {
@@ -85,15 +85,14 @@ ReactDOM.render(
         groups={groups1} 
         states={states} 
         handleChange={handleChange1} 
-        maxGroupOptionsCount={3} 
     />,
     document.getElementById('root1')
 );
 
 const groups2 = [
     { 
-        id: 'tag',
-        type: 'tag',
+        id: 'tags',
+        style: 'tag',
 
         options: [
             {

@@ -20,8 +20,7 @@ const groups = [
     { 
         id: 'MainSources',
         title: 'SOURCES',
-        type: 'source',
-
+        
         options: [
             {
                 value: 'Aeronet.cz'
@@ -37,7 +36,6 @@ const groups = [
     { 
         id: 'MainTags',
         title: 'TAGS',
-        type: 'tag',
 
         options: [
             {
@@ -192,7 +190,7 @@ it('maxGroupOptionsCount', () => {
         {value: 'opt21', groupId: 'g2'}
     ];
     
-    const limited = limitOptions(options, 2);
+    const limited = limitOptions(options, {'g1': 2, 'g2': 2});
     
     expect(limited).toEqual([ 
         { value: 'opt11', groupId: 'g1' },

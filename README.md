@@ -103,9 +103,11 @@ const states = [
 
 const groups = [
     { 
-        id: 'Sources',
+        id: 'sources',
+        style: 'source',
         title: 'SOURCES',
-        type: 'source',
+        filter: 'full-text-search',
+        count: 20,
 
         options: [
             {
@@ -118,9 +120,10 @@ const groups = [
         
     },  
     { 
-        id: 'Tags',
+        id: 'tags',
+        style: 'tag',
         title: 'COLORS',
-        type: 'tag',
+        filter: 'none',
 
         options: [
             {
@@ -170,7 +173,6 @@ ReactDOM.render(
     states={states}
     handleChange={handleChange} 
     value={value} 
-    maxGroupOptionsCount={count}
     placeholder='Select color tags' 
     noResultsFound='No results'
 />
@@ -182,7 +184,9 @@ JSON of grouped options, each group has the following structure (attributes are 
 
 * **id**: unique group identifier
 * **title**: display title (optional, default: none)
-* **type**: `source` or `tag` 
+* **style**: style name for customization (`source` and `tag` is specified in selector.css, optional, default: `source`) 
+* **filter**: filter to be used to filter options (`full-text-search` or `none`, optional, default: `full-text-search`)
+* **count**: max. number of options shown in menu (optional, default: all options shown)
 * **options**: list of elements:
   * **label**: displayed text (optional, default: value)
   * **value**: identifier, also used in the option lists of component value 

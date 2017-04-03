@@ -1,6 +1,6 @@
 const Filter = {
-    'source': textFilter,
-    'tag': allFilter
+    'text': textFilter,
+    'none': allFilter
 }
 
 function textFilter(text, search) {

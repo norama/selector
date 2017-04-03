@@ -23,12 +23,15 @@ class StatefulOptionsSelector extends Component {
 
         this.optionStates = new OptionStates(props.states);
 
-        if (props.maxGroupOptionsCount) {
-            data = data.map(function(group) {
-                group.options.push(limitSignOption(group.id));
-                return group;
-            });
-        }
+        data = data.map(function(group) {
+            if (group.count) {
+                let newGroup = _.clone(group);
+                newGroup.options = _.clone(group.options);
+                newGroup.options.push(limitSignOption(group.id));
+                return newGroup;
+            } 
+            return group;
+        });
 
         this.groups = data.map(function(group) {
             return {
@@ -49,9 +52,21 @@ class StatefulOptionsSelector extends Component {
                 }
             });
         }));
-
-        this.groupId2Type = data.reduce(function(map, group) {
-            map[group.id] = group.type;
+        
+        this.groupId2Style = data.reduce(function(map, group) {
+            map[group.id] = group.style ? group.style : 'source';
+            return map;
+        }, {});
+        
+        this.groupId2Filter = data.reduce(function(map, group) {
+            map[group.id] = group.filter && Filter[group.filter] ? Filter[group.filter] : Filter['none'];
+            return map;
+        }, {});
+        
+        this.groupId2Count = data.reduce(function(map, group) {
+            if (group.count) {
+                map[group.id] = group.count; 
+            }
             return map;
         }, {});
     }
@@ -162,26 +177,27 @@ class StatefulOptionsSelector extends Component {
                                 isLimitSignOption(option);
                         })
                     .filter(function(option) {
-                        const type =  self.groupId2Type[option.groupId];
-                        return Filter[type](option.label, search);
+                        return self.groupId2Filter[option.groupId](option.label, search);
                     })
                     .value();
-                return limitOptions(filteredOptions, self.props.maxGroupOptionsCount);
+                return limitOptions(filteredOptions, self.groupId2Count);
             }}
 
 
             renderOption={function(option){
-                const optionClassName = isLimitSignOption(option) ? 'limit-sign' : 'selectable';
+                const generalOptionClassName = isLimitSignOption(option) ? 'limit-sign' : 'selectable';
+                const specificOptionClassName = self.groupId2Style[option.groupId];
                 return (<div className='menu-option' >
-                        <div className={[option.groupId, optionClassName].join(' ')}>
+                        <div className={[generalOptionClassName, specificOptionClassName].join(' ')}>
                         <MenuItem option={option} />
                         </div>
                     </div>);
             }}
 
             renderValue={function(option){
+                const specificOptionClassName = self.groupId2Style[option.groupId];
                 return (<div className="selected-option">
-                    <div className={option.groupId}>
+                    <div className={specificOptionClassName}>
                     <table><tbody><tr><td><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></td>
                     <td className="x" onClick={function(){
 
@@ -213,13 +229,14 @@ class StatefulOptionsSelector extends Component {
 
 }
 
-export function limitOptions(options, maxGroupOptionsCount) {
-    if (maxGroupOptionsCount && maxGroupOptionsCount < options.length) {
+export function limitOptions(options, groupId2Count) {
+    if (groupId2Count && !_.isEmpty(groupId2Count)) {
         let groupId2options = _.groupBy(options, 'groupId');
         _.each(groupId2options, (groupOptions, groupId) => {
-            if (groupId2options[groupId].length > maxGroupOptionsCount) {
+            const count = groupId2Count[groupId];
+            if (count && groupId2options[groupId].length > count) {
                 groupId2options[groupId] = _.chain(groupId2options[groupId])
-                                    .slice(0, maxGroupOptionsCount)
+                                    .slice(0, count)
                                     .push(limitSignOption(groupId))
                                     .value();
             }
