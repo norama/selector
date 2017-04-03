@@ -59,7 +59,7 @@ class StatefulOptionsSelector extends Component {
         }, {});
         
         this.groupId2Filter = data.reduce(function(map, group) {
-            map[group.id] = group.filter && Filter[group.filter] ? Filter[group.filter] : Filter['none'];
+            map[group.id] = group.filter && Filter[group.filter] ? Filter[group.filter] : Filter['full-text-search'];
             return map;
         }, {});
         

@@ -56,6 +56,7 @@ const groups1 = [
         id: 'tags',
         title: 'TAGS',
         style: 'source',
+        filter: 'none',
 
         options: [
             {
