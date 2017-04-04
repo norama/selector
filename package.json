@@ -1,6 +1,6 @@
 {
   "name": "stateful-options-selector",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": false,
   "homepage": "https://norama.github.io/selector",
   "dependencies": {
