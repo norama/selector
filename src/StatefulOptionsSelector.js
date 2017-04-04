@@ -74,7 +74,7 @@ class StatefulOptionsSelector extends Component {
     componentWillReceiveProps(nextProps) {
         this.init(nextProps);
         this.setState({
-            selectedOptions: this.value2options(this.nextProps.value)
+            selectedOptions: this.value2options(nextProps.value)
         });
     }
 
