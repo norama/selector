@@ -29,7 +29,7 @@ class StatefulOptionsSelector extends Component {
                 newGroup.options = _.clone(group.options);
                 newGroup.options.push(limitSignOption(group.id));
                 return newGroup;
-            } 
+            }
             return group;
         });
 
@@ -52,20 +52,20 @@ class StatefulOptionsSelector extends Component {
                 }
             });
         }));
-        
+
         this.groupId2Style = data.reduce(function(map, group) {
             map[group.id] = group.style ? group.style : 'source';
             return map;
         }, {});
-        
+
         this.groupId2Filter = data.reduce(function(map, group) {
             map[group.id] = group.filter && Filter[group.filter] ? Filter[group.filter] : Filter['full-text-search'];
             return map;
         }, {});
-        
+
         this.groupId2Count = data.reduce(function(map, group) {
             if (group.count) {
-                map[group.id] = group.count; 
+                map[group.id] = group.count;
             }
             return map;
         }, {});
@@ -73,22 +73,27 @@ class StatefulOptionsSelector extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.init(nextProps);
+        this.updateSelection(this.props.value);
     }
 
     componentDidMount() {
+        this.updateSelection(this.props.value);
+    }
+    
+    updateSelection(value) {
         this.setState({
-            selectedOptions: this.value2options()
+            selectedOptions: this.value2options(value)
         }, () => {
             this.propagateValue();
         });
     }
 
-    value2options() {
+    value2options(value) {
         let options = [];
-        if (this.props.value) {
-            for (let groupId in this.props.value) {
-                for (let optionStateValue in this.props.value[groupId]) {
-                    for (let optionValue of this.props.value[groupId][optionStateValue]) {
+        if (value) {
+            for (let groupId in value) {
+                for (let optionStateValue in value[groupId]) {
+                    for (let optionValue of value[groupId][optionStateValue]) {
                         let option = this.options.find(function(option) {
                             return option.value === optionValue && option.groupId === groupId;
                         });
@@ -127,13 +132,12 @@ class StatefulOptionsSelector extends Component {
     }
 
     result() {
-        console.dir(this.state.selectedOptions);
         return this.state.selectedOptions.reduce(function(map, selectedOption) {
             map[selectedOption.groupId][selectedOption.state.value].push(selectedOption.value);
             return map;
         }, this.emptyValue());
     }
-    
+
     emptyValue() {
         return this.groups.reduce((map, group) => {
             map[group.groupId] = this.emptyStateValue();
