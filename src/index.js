@@ -24,7 +24,7 @@ const states = [
 ];
 
 const groups1 = [
-    { 
+    {
         id: 'sources',
         title: 'SOURCES',
         count: 3,
@@ -49,10 +49,10 @@ const groups1 = [
                 value: 'Ihned.cz'
             },
         ]
-        
+
     },
-    
-    { 
+
+    {
         id: 'tags',
         title: 'TAGS',
         style: 'source',
@@ -72,7 +72,7 @@ const groups1 = [
                 icon: 'img/green.png'
             }
         ]
-        
+
     }
 ];
 
@@ -82,16 +82,17 @@ function handleChange1(value) {
 }
 
 ReactDOM.render(
-    <StatefulOptionsSelector 
-        groups={groups1} 
-        states={states} 
-        handleChange={handleChange1} 
+    <StatefulOptionsSelector
+        groups={groups1}
+        states={states}
+        handleChange={handleChange1}
+        placeholder=''
     />,
     document.getElementById('root1')
 );
 
 const groups2 = [
-    { 
+    {
         id: 'tags',
         style: 'tag',
 
@@ -112,7 +113,7 @@ const groups2 = [
                 icon: 'img/blue.png'
             }
         ]
-        
+
     }
 ];
 
@@ -124,12 +125,12 @@ function handleChange2(value) {
 }
 
 ReactDOM.render(
-    <StatefulOptionsSelector 
-        groups={groups2} 
-        states={states} 
-        handleChange={handleChange2} 
-        value={value2} 
-        placeholder='Select color tags' 
+    <StatefulOptionsSelector
+        groups={groups2}
+        states={states}
+        handleChange={handleChange2}
+        value={value2}
+        placeholder='Select color tags'
         noResultsFound='NO RESULTS!'
     />,
     document.getElementById('root2')
