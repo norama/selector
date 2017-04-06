@@ -208,10 +208,10 @@ class StatefulOptionsSelector extends Component {
 
             renderValue={function(option){
                 const specificOptionClassName = self.groupId2Style[option.groupId];
-                return (<div className="selected-option">
-                    <div className={[specificOptionClassName, selectedOptionStateClassName(option)].join(' ')}>
-                    <table><tbody><tr><td><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></td>
-                    <td className="x" onClick={function(){
+                return (<div className='selected-option'>
+                    <div className={[specificOptionClassName, selectedOptionStateClassName(option), 'flex-container'].join(' ')}>
+                    <SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} />
+                    <div className='x' onClick={function(){
 
                         self.setState((prevState, props) => {
                             return {
@@ -225,7 +225,7 @@ class StatefulOptionsSelector extends Component {
                             self.propagateValue();
                         } );
 
-                    }}>x</td></tr></tbody></table>
+                    }}>x</div>
                 </div>
                 </div>);
             }}

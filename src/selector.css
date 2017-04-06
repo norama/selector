@@ -88,3 +88,21 @@
     font-style: italic;
     font-weight: bold;
 }
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.menuitem-icon {
+    margin: 4px 4px 0px 4px;
+}
+
+.menuitem-label {
+    margin: 4px 4px 0px 4px;
+}
+
+
+
