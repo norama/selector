@@ -34,7 +34,7 @@
 
 .menu-option .source {
     background-color: lightblue;
-    color: blue;  
+    color: blue;
     padding: 10px;
 }
 
@@ -51,13 +51,11 @@
 
 .selected-option .source {
     border: 1px solid darkgray;
-    background-color: lightblue;
     padding: 3px;
 }
 
 .selected-option .tag {
     border: 1px solid darkgray;
-    background-color: lightsalmon;
     padding: 3px;
 }
 
@@ -68,21 +66,21 @@
 }
 
 .selected-option .item {
-    padding: 2px;   
+    padding: 2px;
     margin-right: 2px;
     font-weight: bold;
 }
 
 .selected-option .stateful {
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .selected-option .stateless {
-    cursor: default;    
+    cursor: default;
 }
 
 .selected-option td {
-    padding: 0px !important;   
+    padding: 0px !important;
 }
 
 .no-results-found {

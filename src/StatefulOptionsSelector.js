@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { MultiSelect } from 'react-selectize';
 import _ from 'underscore';
 import MenuItem from './MenuItem';
-import SelectedItem from './SelectedItem';
+import SelectedItem, { selectedOptionStateClassName } from './SelectedItem';
 import Filter from './Filter';
 import OptionStates from './OptionStates';
 
@@ -209,7 +209,7 @@ class StatefulOptionsSelector extends Component {
             renderValue={function(option){
                 const specificOptionClassName = self.groupId2Style[option.groupId];
                 return (<div className="selected-option">
-                    <div className={specificOptionClassName}>
+                    <div className={[specificOptionClassName, selectedOptionStateClassName(option)].join(' ')}>
                     <table><tbody><tr><td><SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} /></td>
                     <td className="x" onClick={function(){
 

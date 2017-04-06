@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { mount, shallow, render } from 'enzyme';
 
 import StatefulOptionsSelector, { limitOptions } from './StatefulOptionsSelector';
+import renderer from 'react-test-renderer';
+
 
 const states = [
     {
@@ -17,10 +19,10 @@ const states = [
 ];
 
 const groups = [
-    { 
+    {
         id: 'Sources',
         title: 'SOURCES',
-        
+
         options: [
             {
                 value: 'Aeronet.cz'
@@ -30,10 +32,10 @@ const groups = [
                 value: 'ParlamentniListy.cz'
             }
         ]
-        
+
     },
-    
-    { 
+
+    {
         id: 'Tags',
         title: 'TAGS',
 
@@ -47,7 +49,7 @@ const groups = [
                 icon: 'img/green.png'
             }
         ]
-        
+
     }
 ];
 
@@ -62,91 +64,91 @@ it('renders without data', () => {
     const div = document.createElement('div');
     ReactDOM.render(<StatefulOptionsSelector />, div);
 });
-    
+
 it('renders with data', () => {
     const div = document.createElement('div');
     ReactDOM.render(<StatefulOptionsSelector groups={groups} states={states} />, div);
 });
-    
-it('no states', () => {  
+
+it('no states', () => {
     const handleChange = function(value) {
-        expect(value).toEqual({Sources: {selected: ["Aeronet.cz"]}, Tags: {selected: []}}); 
+        expect(value).toEqual({Sources: {selected: ["Aeronet.cz"]}, Tags: {selected: []}});
     };
-    
+
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value0} />
     );
-    
+
     component.find('div.item.stateless').first().simulate('click');
     component.find('div.item.stateless').first().simulate('click');
-    component.find('div.item.stateless').first().simulate('click');  
-});   
-    
+    component.find('div.item.stateless').first().simulate('click');
+});
+
 it('select 1 item', () => {
     const handleChange = function(value) {
         expect(value.Sources).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] });
     };
-    
+
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
-});    
+});
 
 it('select 1 item with state change', () => {
-    
+
     let counter = 0;
     const handleChange = function(value) {
         switch (counter % 3) {
             case 0: expect(value.Sources).toEqual({ AND: [], OR: [ 'Aeronet.cz' ], NOT: [] }); break;
             case 1: expect(value.Sources).toEqual({ AND: [ 'Aeronet.cz' ], OR: [], NOT: [] }); break;
-            case 2: expect(value.Sources).toEqual({ AND: [], OR: [], NOT: [ 'Aeronet.cz' ] }); break;  
+            case 2: expect(value.Sources).toEqual({ AND: [], OR: [], NOT: [ 'Aeronet.cz' ] }); break;
         };
         counter++;
     };
-    
+
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
-    
-    component.find('.selected.or').first().simulate('click');
-    component.find('.selected.and').first().simulate('click');
-    component.find('.selected.not').first().simulate('click');
-    
-});   
-    
+
+    component.find('.item').first().simulate('click');
+    component.find('.item').first().simulate('click');
+    component.find('.item').first().simulate('click');
+
+});
+
 it('select 2 items', () => {
     const handleChange = function(value) {
         expect(value).toEqual({ Sources: { AND: [], OR: [ 'Aeronet.cz' ], NOT: [] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }});
     };
-    
+
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value2} states={states} />
     );
-});   
- 
+});
+
 it('select 2 items with state change', () => {
-    
+
     let counter = 0;
     const handleChange = function(value) {
 
         switch (counter % 3) {
             case 0: expect(value).toEqual({ Sources: { AND: [], OR: ['Aeronet.cz'], NOT: [] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break;
             case 1: expect(value).toEqual({ Sources: { AND: ['Aeronet.cz'], OR: [], NOT: [] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break;
-            case 2: expect(value).toEqual({ Sources: { AND: [], OR: [], NOT: ['Aeronet.cz'] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break; 
+            case 2: expect(value).toEqual({ Sources: { AND: [], OR: [], NOT: ['Aeronet.cz'] }, Tags: { AND: [ 'Troll' ], OR: [], NOT: [] }}); break;
         };
         counter++;
     };
-    
+
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value2} states={states} />
     );
-    
-    component.find('div.selected.stateful.or').first().simulate('click');
-    component.find('div.selected.stateful.and').first().simulate('click');
-    component.find('div.selected.stateful.not').first().simulate('click');
-    
-});    
-    
+
+    component.find('.item').first().simulate('click');
+    component.find('.item').first().simulate('click');
+    component.find('.item').first().simulate('click');
+
+});
+
 it('unselect item with x', () => {
     let counter = 0;
     const handleChange = function(value) {
@@ -156,14 +158,14 @@ it('unselect item with x', () => {
         };
         counter++;
     };
-    
+
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
     component.find('td.x').first().simulate('click');
-    
+
 });
-    
+
 
 it('unselect all', () => {
     let counter = 0;
@@ -174,29 +176,28 @@ it('unselect all', () => {
         };
         counter++;
     };
-    
+
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value2} states={states} />
     );
     component.find('svg.react-selectize-reset-button').first().simulate('click');
-    
+
 });
-    
+
 it('maxGroupOptionsCount', () => {
     const options = [
-        {value: 'opt11', groupId: 'g1'}, 
-        {value: 'opt12', groupId: 'g1'}, 
+        {value: 'opt11', groupId: 'g1'},
+        {value: 'opt12', groupId: 'g1'},
         {value: 'opt13', groupId: 'g1'},
         {value: 'opt21', groupId: 'g2'}
     ];
-    
+
     const limited = limitOptions(options, {'g1': 2, 'g2': 2});
-    
-    expect(limited).toEqual([ 
+
+    expect(limited).toEqual([
         { value: 'opt11', groupId: 'g1' },
         { value: 'opt12', groupId: 'g1' },
         { value: '...', label: '...', selectable: false, groupId: 'g1' },
-        { value: 'opt21', groupId: 'g2' } 
+        { value: 'opt21', groupId: 'g2' }
     ]);
 });
-
