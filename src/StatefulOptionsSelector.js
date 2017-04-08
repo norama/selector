@@ -226,7 +226,7 @@ class StatefulOptionsSelector extends Component {
                             self.propagateValue();
                         } );
 
-                    }}><img src={x} alt='x'/></div>
+                    }}><img src={close} alt='x'/></div>
                 </div>
                 </div>);
             }}
