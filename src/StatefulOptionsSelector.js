@@ -160,7 +160,7 @@ class StatefulOptionsSelector extends Component {
 
             groups={this.groups}
 
-            open={true}
+            //open={true}
 
             //groupsAsColumns = {true}
 
