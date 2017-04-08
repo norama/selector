@@ -1,18 +1,8 @@
 exports[`test component DOM matches snapshot 1`] = `
 <div
-  style={
-    Object {
-      "margin": "4px 4px 0px 4px",
-    }
-  }>
+  className="flex-container">
   <div
-    style={
-      Object {
-        "display": "inline",
-        "marginRight": "5px",
-        "paddingTop": "5px",
-      }
-    }>
+    className="menuitem-icon">
     <img
       alt="#"
       height="16"
@@ -20,12 +10,7 @@ exports[`test component DOM matches snapshot 1`] = `
       width="16" />
   </div>
   <div
-    style={
-      Object {
-        "display": "inline",
-        "verticalAlign": "top",
-      }
-    }>
+    className="menuitem-label">
     label
   </div>
 </div>

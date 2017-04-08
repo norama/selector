@@ -60,9 +60,11 @@
 }
 
 .selected-option .x {
-    cursor: pointer;
+    display: inline-block;
     vertical-align: top;
-    color: #707070;
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
 }
 
 .selected-option .item {
@@ -77,10 +79,6 @@
 
 .selected-option .stateless {
     cursor: default;
-}
-
-.selected-option td {
-    padding: 0px !important;
 }
 
 .no-results-found {

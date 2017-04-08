@@ -5,6 +5,7 @@ import MenuItem from './MenuItem';
 import SelectedItem, { selectedOptionStateClassName } from './SelectedItem';
 import Filter from './Filter';
 import OptionStates from './OptionStates';
+import close from './close.svg';
 
 class StatefulOptionsSelector extends Component {
 
@@ -160,7 +161,7 @@ class StatefulOptionsSelector extends Component {
 
             groups={this.groups}
 
-            //open = {true}
+            open={true}
 
             //groupsAsColumns = {true}
 
@@ -225,7 +226,7 @@ class StatefulOptionsSelector extends Component {
                             self.propagateValue();
                         } );
 
-                    }}>x</div>
+                    }}><img src={x} alt='x'/></div>
                 </div>
                 </div>);
             }}

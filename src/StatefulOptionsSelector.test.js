@@ -162,7 +162,7 @@ it('unselect item with x', () => {
     const component = mount(
         <StatefulOptionsSelector groups={groups} handleChange={handleChange} value={value1} states={states} />
     );
-    component.find('td.x').first().simulate('click');
+    component.find('.x').first().simulate('click');
 
 });
 
