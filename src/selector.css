@@ -65,6 +65,7 @@
     width: 1.25rem;
     height: 1.25rem;
     cursor: pointer;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgICA8ZyBvcGFjaXR5PSIwLjUiPg0KICAgICAgICA8bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiMzODRFNUEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHgxPSI2LjA2MyIgeTE9IjYuMDYzIiB4Mj0iMTMuOTM3IiB5Mj0iMTMuOTM3Ii8+DQogICAgICAgIDxsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM4NEU1QSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgeDE9IjEzLjkzNyIgeTE9IjYuMDYzIiB4Mj0iNi4wNjMiIHkyPSIxMy45MzciLz4NCiAgICA8L2c+DQo8L3N2Zz4=");
 }
 
 .selected-option .item {
