@@ -87,22 +87,23 @@ class StatefulOptionsSelector extends Component {
 	}
 
 	value2options(value) {
-		let options = [];
-		if (value) {
-			for (let groupId in value) {
-				for (let optionStateValue in value[groupId]) {
-					for (let optionValue of value[groupId][optionStateValue]) {
-						let option = this.options.find(function(option) {
-							return option.value === optionValue && option.groupId === groupId;
-						});
-						option = JSON.parse(JSON.stringify(option)); // clone
-						option.state = this.optionStates.state(optionStateValue);
-						options.push(option);
-					}
+		if (!value) {
+			return [];
+		}
+		let value2option = {};
+		for (let groupId in value.value) {
+			for (let optionStateValue in value.value[groupId]) {
+				for (let optionValue of value.value[groupId][optionStateValue]) {
+					let option = this.options.find(function(option) {
+						return option.value === optionValue && option.groupId === groupId;
+					});
+					option = JSON.parse(JSON.stringify(option)); // clone
+					option.state = this.optionStates.state(optionStateValue);
+					value2option[option.value] = option;
 				}
 			}
 		}
-		return options;
+		return value.order.map(optionValue => (value2option[optionValue]));
 	}
 
 	handleOptionStateChange(option) {
@@ -131,16 +132,17 @@ class StatefulOptionsSelector extends Component {
 
 	result() {
 		return this.state.selectedOptions.reduce(function(map, selectedOption) {
-			map[selectedOption.groupId][selectedOption.state.value].push(selectedOption.value);
+			map.value[selectedOption.groupId][selectedOption.state.value].push(selectedOption.value);
+			map.order.push(selectedOption.value);
 			return map;
 		}, this.emptyValue());
 	}
 
 	emptyValue() {
 		return this.groups.reduce((map, group) => {
-			map[group.groupId] = this.emptyStateValue();
+			map.value[group.groupId] = this.emptyStateValue();
 			return map;
-		}, {});
+		}, { value: {}, order: [] });
 	}
 
 	emptyStateValue() {
@@ -252,6 +254,8 @@ function onInputKeyDown(event) {
 			// Override default ENTER behavior by doing stuff here and then preventing default
 			event.preventDefault();
 			event.stopPropagation();
+			break;
+		default: 
 			break;
 	}
 }
