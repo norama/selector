@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g opacity="0.5">
-        <line fill="none" stroke="#384E5A" stroke-width="1.5" stroke-miterlimit="10" x1="6.063" y1="6.063" x2="13.937" y2="13.937"/>
-        <line fill="none" stroke="#384E5A" stroke-width="1.5" stroke-miterlimit="10" x1="13.937" y1="6.063" x2="6.063" y2="13.937"/>
-    </g>
+	<g opacity="0.5">
+		<line fill="none" stroke="#384E5A" stroke-width="1.5" stroke-miterlimit="10" x1="6.063" y1="6.063" x2="13.937" y2="13.937"/>
+		<line fill="none" stroke="#384E5A" stroke-width="1.5" stroke-miterlimit="10" x1="13.937" y1="6.063" x2="6.063" y2="13.937"/>
+	</g>
 </svg>

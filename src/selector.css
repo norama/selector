@@ -1,106 +1,106 @@
 .react-selectize .dropdown-menu {
-    max-height: 600px !important;
-    background-color: lightyellow !important;
+	max-height: 600px !important;
+	background-color: lightyellow !important;
 }
 
 .simple-group-title {
-    background-color: lightyellow !important;
-    color: darkgray;
-    font-family: monospace;
-    font-size: x-large;
+	background-color: lightyellow !important;
+	color: darkgray;
+	font-family: monospace;
+	font-size: x-large;
 }
 
 .options {
-    border-bottom: 1px solid #8c8b8b;
-    margin: 0px 10px 10px 10px;
-    padding-bottom: 20px;
+	border-bottom: 1px solid #8c8b8b;
+	margin: 0px 10px 10px 10px;
+	padding-bottom: 20px;
 }
 
 .multiselect {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .menu-option {
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 .menu-option .selectable:hover {
-    background-color: gray !important;
+	background-color: gray !important;
 }
 
 .menu-option .limit-sign {
-    cursor: default !important;
+	cursor: default !important;
 }
 
 .menu-option .source {
-    background-color: lightblue;
-    color: blue;
-    padding: 10px;
+	background-color: lightblue;
+	color: blue;
+	padding: 10px;
 }
 
 .menu-option .tag {
-    background-color: lightsalmon;
-    color: saddlebrown;
-    padding: 10px;
+	background-color: lightsalmon;
+	color: saddlebrown;
+	padding: 10px;
 }
 
 .selected-option {
-    margin: 2px;
-    padding: 2px;
+	margin: 2px;
+	padding: 2px;
 }
 
 .selected-option .source {
-    border: 1px solid darkgray;
-    padding: 3px;
+	border: 1px solid darkgray;
+	padding: 3px;
 }
 
 .selected-option .tag {
-    border: 1px solid darkgray;
-    padding: 3px;
+	border: 1px solid darkgray;
+	padding: 3px;
 }
 
 .selected-option .x {
-    display: inline-block;
-    vertical-align: top;
-    width: 1.25rem;
-    height: 1.25rem;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgICA8ZyBvcGFjaXR5PSIwLjUiPg0KICAgICAgICA8bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiMzODRFNUEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHgxPSI2LjA2MyIgeTE9IjYuMDYzIiB4Mj0iMTMuOTM3IiB5Mj0iMTMuOTM3Ii8+DQogICAgICAgIDxsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM4NEU1QSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgeDE9IjEzLjkzNyIgeTE9IjYuMDYzIiB4Mj0iNi4wNjMiIHkyPSIxMy45MzciLz4NCiAgICA8L2c+DQo8L3N2Zz4=");
+	display: inline-block;
+	vertical-align: top;
+	width: 1.25rem;
+	height: 1.25rem;
+	cursor: pointer;
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgICA8ZyBvcGFjaXR5PSIwLjUiPg0KICAgICAgICA8bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiMzODRFNUEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHgxPSI2LjA2MyIgeTE9IjYuMDYzIiB4Mj0iMTMuOTM3IiB5Mj0iMTMuOTM3Ii8+DQogICAgICAgIDxsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM4NEU1QSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgeDE9IjEzLjkzNyIgeTE9IjYuMDYzIiB4Mj0iNi4wNjMiIHkyPSIxMy45MzciLz4NCiAgICA8L2c+DQo8L3N2Zz4=");
 }
 
 .selected-option .item {
-    padding: 2px;
-    margin-right: 2px;
-    font-weight: bold;
+	padding: 2px;
+	margin-right: 2px;
+	font-weight: bold;
 }
 
 .selected-option .stateful {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .selected-option .stateless {
-    cursor: default;
+	cursor: default;
 }
 
 .no-results-found {
-    color: darkgray;
-    font-style: italic;
-    font-weight: bold;
+	color: darkgray;
+	font-style: italic;
+	font-weight: bold;
 }
 
 .flex-container {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
 }
 
 .menuitem-icon {
-    margin: 4px 4px 0px 4px;
+	margin: 4px 4px 0px 4px;
 }
 
 .menuitem-label {
-    margin: 4px 4px 0px 4px;
+	margin: 4px 4px 0px 4px;
 }
 
 

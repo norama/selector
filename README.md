@@ -87,81 +87,81 @@ import '../node_modules/react-selectize/themes/default.css';
 import StatefulOptionsSelector from './StatefulOptionsSelector';
 
 const states = [
-    {
-        value: 'or',
-        label: 'OR'
-    },
-    {
-        value: 'and',
-        label: 'AND'
-    },
-    {
-        value: 'not',
-        label: 'NOT'
-    }
+	{
+		value: 'or',
+		label: 'OR'
+	},
+	{
+		value: 'and',
+		label: 'AND'
+	},
+	{
+		value: 'not',
+		label: 'NOT'
+	}
 ];
 
 const groups = [
-    { 
-        id: 'sources',
-        style: 'source',
-        title: 'SOURCES',
-        filter: 'full-text-search',
-        count: 20,
+	{ 
+		id: 'sources',
+		style: 'source',
+		title: 'SOURCES',
+		filter: 'full-text-search',
+		count: 20,
 
-        options: [
-            {
-                value: 'Aeronet.cz'
-            },
-            {
-                value: 'ParlamentniListy.cz'
-            }
-        ]
-        
-    },  
-    { 
-        id: 'tags',
-        style: 'tag',
-        title: 'COLORS',
-        filter: 'none',
+		options: [
+			{
+				value: 'Aeronet.cz'
+			},
+			{
+				value: 'ParlamentniListy.cz'
+			}
+		]
+		
+	},  
+	{ 
+		id: 'tags',
+		style: 'tag',
+		title: 'COLORS',
+		filter: 'none',
 
-        options: [
-            {
-                label: 'Red',
-                value: 'red',
-                icon: 'img/red.png'
-            },
-            {
-                label: 'Green',
-                value: 'green',
-                icon: 'img/green.png'
-            },
-            {
-                label: 'Blue',
-                value: 'blue',
-                icon: 'img/blue.png'
-            }
-        ]
-        
-    }
+		options: [
+			{
+				label: 'Red',
+				value: 'red',
+				icon: 'img/red.png'
+			},
+			{
+				label: 'Green',
+				value: 'green',
+				icon: 'img/green.png'
+			},
+			{
+				label: 'Blue',
+				value: 'blue',
+				icon: 'img/blue.png'
+			}
+		]
+		
+	}
 ];
 
 const value = { tags: {and: [ 'red', 'green' ], not: [ 'blue' ] }};
 
 function handleChange(value) {
-    console.log(JSON.stringify(value, undefined, 4));
+	console.log(JSON.stringify(value, undefined, 4));
 }
 
 ReactDOM.render(
-    <StatefulOptionsSelector 
-        groups={groups} 
-        states={states}
-        handleChange={handleChange} 
-        value={value} 
-        placeholder='Select color' 
-        noResultsFound='No results'
-    />,
-    document.getElementById('root')
+	<StatefulOptionsSelector 
+		groups={groups} 
+		states={states}
+		handleChange={handleChange} 
+		value={value} 
+		placeholder='Select color' 
+		noResultsFound='No results'
+	/>,
+	document.getElementById('root')
 );
 ```
 
@@ -169,12 +169,12 @@ ReactDOM.render(
 
 ```html
 <StatefulOptionsSelector 
-    groups={groups} 
-    states={states}
-    handleChange={handleChange} 
-    value={value} 
-    placeholder='Select color tags' 
-    noResultsFound='No results'
+	groups={groups} 
+	states={states}
+	handleChange={handleChange} 
+	value={value} 
+	placeholder='Select color tags' 
+	noResultsFound='No results'
 />
 ```
 
@@ -211,23 +211,23 @@ Callback function for value change, accepts a single parameter with the current 
 ```
 {
   group1: {
-    <state1>: [option],
-    <state2>: [option],
-    ...
-    <stateN>: [option]
+	<state1>: [option],
+	<state2>: [option],
+	...
+	<stateN>: [option]
   },
   group1: {
-    <state1>: [option],
-    <state2>: [option],
-    ...
-    <stateN>: [option]
+	<state1>: [option],
+	<state2>: [option],
+	...
+	<stateN>: [option]
   },
   ...
   groupK: {
-    <state1>: [option],
-    <state2>: [option],
-    ...
-    <stateN>: [option]
+	<state1>: [option],
+	<state2>: [option],
+	...
+	<stateN>: [option]
   }
 }
 ```
@@ -237,14 +237,14 @@ in case of stateless options:
 ```
 {
   group1: {
-    selected: [option]
+	selected: [option]
   },
   group2: {
-    selected: [option]
+	selected: [option]
   },
   ...
   groupK: {
-    selected: [option]
+	selected: [option]
   }
 }
 ```
@@ -323,21 +323,21 @@ selector/
   package.json
   node_modules/
   public/
-    img/
-    index.html
-    favicon.ico
+	img/
+	index.html
+	favicon.ico
   src/
-    __snapshots__/
-    Filter.js
-    Logic.js
-    MenuItem.js
-    MenuItem.test.js
-    SelectedItem.js
-    SelectedItem.test.js
-    StatefulOptionsSelector.js
-    StatefulOptionsSelector.test.js
-    index.js
-    selector.css
+	__snapshots__/
+	Filter.js
+	Logic.js
+	MenuItem.js
+	MenuItem.test.js
+	SelectedItem.js
+	SelectedItem.test.js
+	StatefulOptionsSelector.js
+	StatefulOptionsSelector.test.js
+	index.js
+	selector.css
 ```
 
 * `README.md`: this file
