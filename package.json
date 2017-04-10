@@ -1,36 +1,36 @@
 {
   "name": "stateful-options-selector",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "homepage": "https://norama.github.io/selector",
   "dependencies": {
-	"jquery": "^3.2.0",
-	"react": "^15.4.2",
-	"react-addons-css-transition-group": "^15.4.2",
-	"react-addons-shallow-compare": "^15.4.2",
-	"react-dom": "^15.4.2",
-	"react-selectize": "^2.1.0",
-	"serve": "^5.0.4",
-	"underscore": "^1.8.3"
+    "jquery": "^3.2.0",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-shallow-compare": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-selectize": "^2.1.0",
+    "serve": "^5.0.4",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-	"babel-cli": "^6.24.0",
-	"babel-plugin-add-module-exports": "^0.2.1",
-	"babel-preset-es2015": "^6.24.0",
-	"enzyme": "^2.7.1",
-	"gh-pages": "^0.12.0",
-	"react-addons-test-utils": "^15.4.2",
-	"react-scripts": "0.9.5",
-	"react-test-renderer": "^15.4.2"
+    "babel-cli": "^6.24.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.0",
+    "enzyme": "^2.7.1",
+    "gh-pages": "^0.12.0",
+    "react-addons-test-utils": "^15.4.2",
+    "react-scripts": "0.9.5",
+    "react-test-renderer": "^15.4.2"
   },
   "scripts": {
-	"start": "react-scripts start",
-	"build": "react-scripts build",
-	"test": "react-scripts test --env=jsdom",
-	"eject": "react-scripts eject",
-	"now-start": "serve build/",
-	"predeploy": "npm run build",
-	"deploy": "gh-pages -d build",
-	"prepublish": "babel ./src --out-dir ./lib --ignore index.js,*.test.js,__snapshot__ --copy-files --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "now-start": "serve build/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "prepublish": "babel ./src --out-dir ./lib --ignore index.js,*.test.js,__snapshot__ --copy-files --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports"
   }
 }
