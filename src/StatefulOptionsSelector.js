@@ -160,7 +160,7 @@ class StatefulOptionsSelector extends Component {
 
 			groups={this.groups}
 
-			open={true}
+			//open={true}
 
 			//groupsAsColumns = {true}
 
@@ -235,11 +235,26 @@ class StatefulOptionsSelector extends Component {
 			renderNoResultsFound={function() {
 				return (<div className='no-results-found'>{self.props.noResultsFound ? self.props.noResultsFound : 'No results found'}</div>);
 			}}
+						
+			onInputKeyDown={onInputKeyDown}
 		/>);
 
 	}
 
 }
+						
+function onInputKeyDown(event) {
+	switch (event.keyCode) {
+		case 9:   // TAB
+			// Extend default TAB behavior by doing something here
+			break;
+		case 13: // ENTER
+			// Override default ENTER behavior by doing stuff here and then preventing default
+			event.preventDefault();
+			break;
+	}
+}
+
 
 export function limitOptions(options, groupId2Count) {
 	if (groupId2Count && !_.isEmpty(groupId2Count)) {
