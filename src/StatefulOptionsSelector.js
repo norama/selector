@@ -251,6 +251,7 @@ function onInputKeyDown(event) {
 		case 13: // ENTER
 			// Override default ENTER behavior by doing stuff here and then preventing default
 			event.preventDefault();
+			event.stopPropagation();
 			break;
 	}
 }
