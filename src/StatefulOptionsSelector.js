@@ -90,6 +90,7 @@ class StatefulOptionsSelector extends Component {
 		if (!value) {
 			return [];
 		}
+		let options = [];
 		let value2option = {};
 		for (let groupId in value.value) {
 			for (let optionStateValue in value.value[groupId]) {
@@ -100,10 +101,13 @@ class StatefulOptionsSelector extends Component {
 					option = JSON.parse(JSON.stringify(option)); // clone
 					option.state = this.optionStates.state(optionStateValue);
 					value2option[option.value] = option;
+					options.push(option);
 				}
 			}
 		}
-		return value.order.map(optionValue => (value2option[optionValue]));
+		return value.order && value.order.length ?
+			value.order.map(optionValue => (value2option[optionValue])) :
+			options;
 	}
 
 	handleOptionStateChange(option) {

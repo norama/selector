@@ -146,7 +146,10 @@ const groups = [
 	}
 ];
 
-const value = { tags: {and: [ 'red', 'green' ], not: [ 'blue' ] }};
+const value = {
+	value: { tags: {and: [ 'red', 'green' ], not: [ 'blue' ] }},
+	order: [ 'red', 'green', 'blue' ]
+};
 
 function handleChange(value) {
 	console.log(JSON.stringify(value, undefined, 4));

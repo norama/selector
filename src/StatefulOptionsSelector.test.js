@@ -55,12 +55,10 @@ const groups = [
 
 const value0 = {
 	value: { Sources: { selected: [ 'Aeronet.cz' ] } },
-	order: [ 'Aeronet.cz' ]
 };
 
 const value1 = {
 	value: { Sources: { OR: [ 'Aeronet.cz' ] } },
-	order: [ 'Aeronet.cz' ]
 };
 
 const value2 = { 
