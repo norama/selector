@@ -11,9 +11,12 @@
 }
 
 .options {
-	border-bottom: 1px solid #8c8b8b;
 	margin: 0px 10px 10px 10px;
 	padding-bottom: 20px;
+}
+
+.groups :not(:last-child) .options {
+	border-bottom: 1px solid #879396 !important;
 }
 
 .multiselect {
