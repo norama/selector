@@ -243,8 +243,13 @@ class StatefulOptionsSelector extends Component {
 			}}
 						
 			onKeyboardSelectionFailed={function(e) { 
-				e.preventDefault();
-				e.stopPropagation();
+				if (e.preventDefault && e.stopPropagation) {
+					e.preventDefault();
+					e.stopPropagation();
+				} else {
+					console.log('IMPORTANT: to prevent TIME combo changes,\n' +
+						'modify react-selectize/src/ReactSelectize.js: onKeyboardSelectionFailed(e.which); -> onKeyboardSelectionFailed(e);')
+				}
 			}}
 						
 		/>);
