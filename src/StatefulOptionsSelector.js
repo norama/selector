@@ -242,9 +242,9 @@ class StatefulOptionsSelector extends Component {
 				return (<div className='no-results-found'>{self.props.noResultsFound ? self.props.noResultsFound : 'No results found'}</div>);
 			}}
 						
-			onKeyboardSelectionFailed={function(keyCode) { 
-				event.preventDefault();
-				event.stopPropagation();
+			onKeyboardSelectionFailed={function(e) { 
+				e.preventDefault();
+				e.stopPropagation();
 			}}
 						
 		/>);
