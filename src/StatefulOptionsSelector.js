@@ -242,28 +242,16 @@ class StatefulOptionsSelector extends Component {
 				return (<div className='no-results-found'>{self.props.noResultsFound ? self.props.noResultsFound : 'No results found'}</div>);
 			}}
 						
-			onInputKeyDown={onInputKeyDown}
+			onKeyboardSelectionFailed={function(keyCode) { 
+				event.preventDefault();
+				event.stopPropagation();
+			}}
+						
 		/>);
 
 	}
 
 }
-						
-function onInputKeyDown(event) {
-	switch (event.keyCode) {
-		case 9:   // TAB
-			// Extend default TAB behavior by doing something here
-			break;
-		case 13: // ENTER
-			// Override default ENTER behavior by doing stuff here and then preventing default
-			event.preventDefault();
-			event.stopPropagation();
-			break;
-		default: 
-			break;
-	}
-}
-
 
 export function limitOptions(options, groupId2Count) {
 	if (groupId2Count && !_.isEmpty(groupId2Count)) {
