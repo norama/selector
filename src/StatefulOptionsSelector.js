@@ -5,6 +5,7 @@ import MenuItem from './MenuItem';
 import SelectedItem, { selectedOptionStateClassName } from './SelectedItem';
 import Filter from './Filter';
 import OptionStates from './OptionStates';
+import cancelEvent from './cancelEvent';
 
 class StatefulOptionsSelector extends Component {
 
@@ -179,7 +180,7 @@ class StatefulOptionsSelector extends Component {
 				});
 			}}
 
-			closeOnSelect={false}
+			closeOnSelect={true}
 
 			// filterOptions :: [Item] -> [Item] -> String -> [Item]
 			filterOptions={function(options, values, search) {
@@ -213,22 +214,25 @@ class StatefulOptionsSelector extends Component {
 				return (<div className='selected-option'>
 					<div className={[specificOptionClassName, selectedOptionStateClassName(option), 'flex-container'].join(' ')}>
 					<SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} />
-					<div className='x' onClick={function(){
+					<div className='x' 
+						 onClick={function(e) {
+							cancelEvent(e);
 
-						self.setState((prevState, props) => {
-							return {
-								selectedOptions: _.reject(self.state.selectedOptions,
-									function(selectedOption) {
-										return option.value === selectedOption.value;
-									})
-							};
-						}, () => {
-							self.multiSelectInstance.focus();
-							self.propagateValue();
-						} );
+							self.setState((prevState, props) => {
+								return {
+									selectedOptions: _.reject(self.state.selectedOptions,
+										function(selectedOption) {
+											return option.value === selectedOption.value;
+										})
+								};
+							}, () => {
+								self.multiSelectInstance.focus();
+								self.propagateValue();
+							} );
 
-					}}></div>
-				</div>
+						 }}
+						 onMouseDown={cancelEvent} />
+					</div>
 				</div>);
 			}}
 

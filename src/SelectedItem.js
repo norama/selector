@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import MenuItem from './MenuItem';
+import cancelEvent from './cancelEvent';
 
 class SelectedItem extends Component {
 
@@ -10,6 +11,7 @@ class SelectedItem extends Component {
 	}
 
 	handleChange(e) {
+		cancelEvent(e);
 		this.props.handleOptionStateChange(this.props.option);
 	}
 
@@ -17,6 +19,7 @@ class SelectedItem extends Component {
 		const stateless = (this.props.option.state.value === 'selected');
 		return (<div disabled={stateless}
 				className={['item', stateless ? 'stateless' : 'stateful', 'selected'].join(' ')}
+				onMouseDown={cancelEvent}
 				onClick={this.handleChange}
 				title={this.props.option.state.label}>
 
