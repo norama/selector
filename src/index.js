@@ -135,6 +135,7 @@ ReactDOM.render(
 		value={value2}
 		placeholder='Select color tags'
 		noResultsFound='NO RESULTS!'
+		open={true}
 	/>,
 	document.getElementById('root2')
 );

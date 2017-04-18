@@ -166,10 +166,6 @@ class StatefulOptionsSelector extends Component {
 
 			groups={this.groups}
 
-			//open={true}
-
-			//groupsAsColumns = {true}
-
 			options={this.options}
 
 			values={this.state.selectedOptions}
@@ -251,9 +247,28 @@ class StatefulOptionsSelector extends Component {
 						'modify react-selectize/src/ReactSelectize.js: onKeyboardSelectionFailed(e.which); -> onKeyboardSelectionFailed(e);')
 				}
 			}}
+								  
+			{...this.optionalProps()}
 						
 		/>);
 
+	}
+	
+	optionalProps() {
+		let optionalProps = {};
+		if (this.props.open) {
+			optionalProps.open = this.props.open;
+		}
+		if (this.props.hideResetButton) {
+			optionalProps.hideResetButton = this.props.hideResetButton;
+		}
+		if (this.props.renderResetButton) {
+			optionalProps.renderResetButton = this.props.renderResetButton;
+		}
+		if (this.props.renderToggleButton) {
+			optionalProps.renderToggleButton = this.props.renderToggleButton;
+		}
+		return optionalProps;
 	}
 
 }
