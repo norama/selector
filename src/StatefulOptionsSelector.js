@@ -113,6 +113,7 @@ class StatefulOptionsSelector extends Component {
 
 	handleOptionStateChange(option) {
 		const self = this;
+		this.multiSelectInstance.blur();
 		this.setState((prevState, props) => {
 			let selectedOptions = prevState.selectedOptions.map(function(selectedOption) {
 				if (selectedOption.value === option.value) {
@@ -121,10 +122,9 @@ class StatefulOptionsSelector extends Component {
 				return selectedOption;
 			});
 			return {
-				selectedOptions: selectedOptions,
+				selectedOptions: selectedOptions
 			};
 		}, () => {
-			this.multiSelectInstance.focus();
 			this.propagateValue();
 		});
 	}
@@ -180,7 +180,7 @@ class StatefulOptionsSelector extends Component {
 				});
 			}}
 
-			closeOnSelect={true}
+			closeOnSelect={false}
 
 			// filterOptions :: [Item] -> [Item] -> String -> [Item]
 			filterOptions={function(options, values, search) {
@@ -214,9 +214,9 @@ class StatefulOptionsSelector extends Component {
 				return (<div className='selected-option'>
 					<div className={[specificOptionClassName, selectedOptionStateClassName(option), 'flex-container'].join(' ')}>
 					<SelectedItem option={option} handleOptionStateChange={self.handleOptionStateChange} />
-					<div className='x' 
+					<div className='x'
 						 onClick={function(e) {
-							cancelEvent(e);
+							self.multiSelectInstance.blur();
 
 							self.setState((prevState, props) => {
 								return {
@@ -226,7 +226,6 @@ class StatefulOptionsSelector extends Component {
 										})
 								};
 							}, () => {
-								self.multiSelectInstance.focus();
 								self.propagateValue();
 							} );
 
@@ -241,23 +240,22 @@ class StatefulOptionsSelector extends Component {
 			renderNoResultsFound={function() {
 				return (<div className='no-results-found'>{self.props.noResultsFound ? self.props.noResultsFound : 'No results found'}</div>);
 			}}
-						
-			onKeyboardSelectionFailed={function(e) { 
+
+			onKeyboardSelectionFailed={function(e) {
 				if (e.preventDefault && e.stopPropagation) {
-					e.preventDefault();
-					e.stopPropagation();
+					cancelEvent(e);
 				} else {
 					console.log('IMPORTANT: to prevent TIME combo changes,\n' +
 						'modify react-selectize/src/ReactSelectize.js: onKeyboardSelectionFailed(e.which); -> onKeyboardSelectionFailed(e);')
 				}
 			}}
-								  
+
 			{...this.optionalProps()}
-						
+
 		/>);
 
 	}
-	
+
 	optionalProps() {
 		let optionalProps = {};
 		if (this.props.open) {
