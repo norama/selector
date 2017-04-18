@@ -37,5 +37,6 @@ it('handleStateChange', () => {
 	const component = shallow(
 		<SelectedItem option={option} handleOptionStateChange={handleOptionStateChange} />
 	);
-	component.find('div.item').simulate('click');
+	component.find('div.item').simulate('click', 
+		{preventDefault: function() {}, stopPropagation: function() {}});
 });
