@@ -112,6 +112,7 @@ const groups = [
 		options: [
 			{
 				render: () => (<div className="custom-label">AERONET</div>),
+				label: 'aeronet',
 				value: 'Aeronet.cz'
 			},
 			{
