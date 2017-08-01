@@ -100,7 +100,7 @@ class StatefulOptionsSelector extends Component {
 					let option = this.options.find(function(option) {
 						return option.value === optionValue && option.groupId === groupId;
 					});
-					option = JSON.parse(JSON.stringify(option)); // clone
+					option = _.clone(option);
 					option.state = this.optionStates.state(optionStateValue);
 					value2option[option.value] = option;
 					options.push(option);

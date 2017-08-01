@@ -103,6 +103,7 @@ const groups2 = [
 
 		options: [
 			{
+				render: () => (<div className="custom-label">RED</div>),
 				label: 'Red',
 				value: 'red',
 				icon: 'img/red.png'
