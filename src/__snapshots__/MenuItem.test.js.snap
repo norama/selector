@@ -1,4 +1,16 @@
-exports[`test component DOM matches snapshot 1`] = `
+exports[`test component DOM matches snapshot - custom rendering 1`] = `
+<div
+  className="flex-container">
+  <div
+    className="menuitem-label">
+    <div>
+      custom
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test component DOM matches snapshot - label and icon 1`] = `
 <div
   className="flex-container">
   <div

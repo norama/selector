@@ -31,15 +31,19 @@ const groups1 = [
 
 		options: [
 			{
+				render: () => (<div className="custom-label">AERONET</div>),
 				value: 'Aeronet.cz'
 			},
 			{
+				label: 'Parlamentni Listy',
 				value: 'ParlamentniListy.cz'
 			},
 			{
 				value: 'Novinky.cz'
 			},
 			{
+				render: () => (<div className="custom-label">BLESK ***</div>),
+				label: 'blesk *** xxx',
 				value: 'Blesk.cz'
 			},
 			{
@@ -60,6 +64,7 @@ const groups1 = [
 
 		options: [
 			{
+				render: () => (<div className="custom-label">CzechNews</div>),
 				value: 'CzechNews',
 				icon: 'img/blue.png'
 			},

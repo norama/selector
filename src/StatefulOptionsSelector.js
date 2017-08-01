@@ -45,6 +45,7 @@ class StatefulOptionsSelector extends Component {
 			return group.options.map(function(option) {
 				return {
 					groupId: group.id,
+					render: option.render,
 					label: option.label ? option.label : option.value,
 					value: option.value,
 					icon: option.icon,

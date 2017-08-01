@@ -111,9 +111,11 @@ const groups = [
 
 		options: [
 			{
+				render: () => (<div className="custom-label">AERONET</div>),
 				value: 'Aeronet.cz'
 			},
 			{
+				label: 'Parlamentni Listy',
 				value: 'ParlamentniListy.cz'
 			}
 		]
@@ -188,10 +190,12 @@ JSON of grouped options, each group has the following structure (attributes are 
 * **id**: unique group identifier
 * **title**: display title (optional, default: none)
 * **style**: style name for customization (`source` and `tag` is specified in selector.css, optional, default: `source`) 
-* **filter**: filter to be used to filter options (`full-text-search` or `none`, optional, default: `full-text-search`)
+* **filter**: filter to be used to filter options by label (`full-text-search` or `none`, optional, default: `full-text-search`)
 * **count**: max. number of options shown in menu (optional, default: all options shown)
 * **options**: list of elements:
-  * **label**: displayed text (optional, default: value)
+  * **render**: rendering function for custom JSX (optional, used instead of **label** if specified)
+  * **label**: displayed text if **render** is omitted, also used for filtering (whisper) 
+               even if  **render** determines the displayed text (optional, default: value)
   * **value**: identifier, also used in the option lists of component value 
   * **icon**: link to icon image to be displayed in menu (optional, default: none)
   
