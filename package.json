@@ -5,10 +5,10 @@
   "homepage": "https://norama.github.io/selector",
   "dependencies": {
     "jquery": "^3.2.0",
-    "react": "^15.4.2",
+    "react": "^16.1.0",
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-shallow-compare": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react-dom": "^16.1.0",
     "react-dom-factories": "^1.0.0",
     "react-selectize": "^3.0.1",
     "serve": "^5.0.4",
