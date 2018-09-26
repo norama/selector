@@ -20,7 +20,7 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 ## Stateful Options Selector
 
 Stateful Options Selector is a multiple selector component written in [React](https://facebook.github.io/react/),
-where each selected options can have an associated user selected state. The set of possible states is configurable.
+where each selected option can have an associated user selected state. The set of possible states is configurable.
 The component is based on [react-selectize](https://github.com/furqanZafar/react-selectize/).
 
 The state of the selected options can be changed by clicking on the button in their widget.
