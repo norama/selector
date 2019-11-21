@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow, render } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import StatefulOptionsSelector, { limitOptions } from './StatefulOptionsSelector';
-import renderer from 'react-test-renderer';
 
+Enzyme.configure({ adapter: new Adapter() });
 
 const states = [
 	{

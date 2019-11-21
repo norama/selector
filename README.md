@@ -1,5 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).<br>
-Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) for a detailed description of common tasks.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
+Refer to its [documentation](https://create-react-app.dev/) for details.
 
 
 ## Table of Contents
@@ -10,10 +10,10 @@ Refer to its [guide](https://github.com/facebookincubator/create-react-app/blob/
 - [Usage](#usage-jsx)
 - [Configuration](#configuration)
 - [Available Scripts](#available-scripts)
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run eject](#npm-run-eject)
+  - [yarn start](#yarn-start)
+  - [yarn test](#yarn-test)
+  - [yarn run build](#yarn-run-build)
+  - [yarn run eject](#yarn-run-eject)
 - [Folder Structure](#folder-structure)
 
 
@@ -54,7 +54,7 @@ Options are added to `source` or `tag` groups:
 ## Install
 
 ```
-npm install stateful-options-selector --save
+yarn install stateful-options-selector --save
 ```
 Import component:
 
@@ -291,7 +291,7 @@ This section is based on the [available scripts](https://github.com/facebookincu
 
 After cloning / downloading this project, in the root directory you can run the scripts listed below.
 
-### `npm start`
+### `yarn start`
 
 Runs the  [src/index.js](https://github.com/norama/selector/blob/master/src/index.js) demo app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -299,12 +299,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section in [guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) about [running tests](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests) for more information.
 
-### `npm run build`
+### `yarn run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -312,7 +312,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-### `npm run eject`
+### `yarn run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -349,8 +349,8 @@ selector/
 ```
 
 * `README.md`: this file
-* `package.json`: npm project configuration file
-* `node_modules/`: installed npm packages
+* `package.json`: yarn project configuration file
+* `node_modules/`: installed yarn packages
 * `public/`: HTML and resources for demo
 * `index.js`: demo application 
 * `StatefulOptionsSelector.js`: selector component

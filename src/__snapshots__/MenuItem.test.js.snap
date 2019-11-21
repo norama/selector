@@ -1,8 +1,12 @@
-exports[`test component DOM matches snapshot - custom rendering 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component DOM matches snapshot - custom rendering 1`] = `
 <div
-  className="flex-container">
+  className="flex-container"
+>
   <div
-    className="menuitem-label">
+    className="menuitem-label"
+  >
     <div>
       custom
     </div>
@@ -10,19 +14,23 @@ exports[`test component DOM matches snapshot - custom rendering 1`] = `
 </div>
 `;
 
-exports[`test component DOM matches snapshot - label and icon 1`] = `
+exports[`component DOM matches snapshot - label and icon 1`] = `
 <div
-  className="flex-container">
+  className="flex-container"
+>
   <div
-    className="menuitem-icon">
+    className="menuitem-icon"
+  >
     <img
       alt="#"
       height="16"
       src="icon"
-      width="16" />
+      width="16"
+    />
   </div>
   <div
-    className="menuitem-label">
+    className="menuitem-label"
+  >
     label
   </div>
 </div>

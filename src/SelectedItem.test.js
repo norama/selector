@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {shallow} from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import SelectedItem from './SelectedItem';
-import OptionStates from './OptionStates'
+
+Enzyme.configure({ adapter: new Adapter() });
 
 it('renders with label only', () => {
 	const option = {
